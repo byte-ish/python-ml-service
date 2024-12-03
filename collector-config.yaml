@@ -1,0 +1,14 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:  # Ensure gRPC protocol is enabled
+
+exporters:
+  zipkin:
+    endpoint: "http://localhost:9411/api/v2/spans"
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [zipkin]

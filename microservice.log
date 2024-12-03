@@ -1,0 +1,37 @@
+2024-12-03 17:14:44,039 - microservice_logger - INFO - Model loaded successfully.
+2024-12-03 17:14:44,042 - microservice_logger - INFO - Starting the FastAPI application...
+2024-12-03 17:22:03,589 - microservice_logger - INFO - Shutting down the FastAPI application...
+2024-12-03 17:24:43,612 - microservice_logger - INFO - Model loaded successfully.
+2024-12-03 17:24:43,615 - microservice_logger - INFO - Starting the FastAPI application...
+2024-12-03 17:26:03,649 - microservice_logger - INFO - Model loaded successfully.
+2024-12-03 17:26:03,651 - microservice_logger - INFO - Starting the FastAPI application...
+2024-12-03 17:33:34,830 - microservice_logger - INFO - Shutting down the FastAPI application...
+2024-12-03 17:33:36,870 - microservice_logger - INFO - Model loaded successfully.
+2024-12-03 17:33:36,873 - microservice_logger - INFO - Starting the FastAPI application...
+2024-12-03 17:33:47,197 - microservice_logger - INFO - Prediction request received: {'value': 2.0}
+2024-12-03 17:33:47,197 - microservice_logger - DEBUG - Performing prediction with input: {'value': 2.0}
+2024-12-03 17:33:47,198 - microservice_logger - INFO - Prediction result: [1]
+2024-12-03 17:33:48,501 - microservice_logger - INFO - Prediction request received: {'value': 2.0}
+2024-12-03 17:33:48,501 - microservice_logger - DEBUG - Performing prediction with input: {'value': 2.0}
+2024-12-03 17:33:48,501 - microservice_logger - INFO - Prediction result: [1]
+2024-12-03 17:33:50,018 - microservice_logger - INFO - Prediction request received: {'value': 2.0}
+2024-12-03 17:33:50,018 - microservice_logger - DEBUG - Performing prediction with input: {'value': 2.0}
+2024-12-03 17:33:50,019 - microservice_logger - INFO - Prediction result: [1]
+2024-12-03 17:35:09,768 - microservice_logger - INFO - Prediction request received: {'value': 2.0}
+2024-12-03 17:35:09,769 - microservice_logger - DEBUG - Performing prediction with input: {'value': 2.0}
+2024-12-03 17:35:09,781 - microservice_logger - INFO - Prediction result: [1]
+2024-12-03 17:35:10,811 - microservice_logger - INFO - Prediction request received: {'value': 2.0}
+2024-12-03 17:35:10,811 - microservice_logger - DEBUG - Performing prediction with input: {'value': 2.0}
+2024-12-03 17:35:10,812 - microservice_logger - INFO - Prediction result: [1]
+2024-12-03 17:35:12,955 - microservice_logger - INFO - Prediction request received: {'value': 2.0}
+2024-12-03 17:35:12,956 - microservice_logger - DEBUG - Performing prediction with input: {'value': 2.0}
+2024-12-03 17:35:12,956 - microservice_logger - INFO - Prediction result: [1]
+2024-12-03 17:35:13,693 - microservice_logger - INFO - Prediction request received: {'value': 2.0}
+2024-12-03 17:35:13,693 - microservice_logger - DEBUG - Performing prediction with input: {'value': 2.0}
+2024-12-03 17:35:13,693 - microservice_logger - INFO - Prediction result: [1]
+2024-12-03 17:35:14,285 - microservice_logger - INFO - Prediction request received: {'value': 2.0}
+2024-12-03 17:35:14,285 - microservice_logger - DEBUG - Performing prediction with input: {'value': 2.0}
+2024-12-03 17:35:14,285 - microservice_logger - INFO - Prediction result: [1]
+2024-12-03 17:35:14,836 - microservice_logger - INFO - Prediction request received: {'value': 2.0}
+2024-12-03 17:35:14,836 - microservice_logger - DEBUG - Performing prediction with input: {'value': 2.0}
+2024-12-03 17:35:14,836 - microservice_logger - INFO - Prediction result: [1]
