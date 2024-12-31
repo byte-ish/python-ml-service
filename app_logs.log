@@ -42,3 +42,37 @@
 {"timestamp": "2024-12-31T15:01:59", "level": "WARNING", "logger": "fastapi", "message": "email-validator not installed, email fields will be treated as str.\nTo install, run: pip install email-validator", "request_id": null}
 {"timestamp": "2024-12-31T15:02:10", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "0b7acf76-a92e-4f75-ba68-6330a61bdd16"}
 {"timestamp": "2024-12-31T15:02:10", "level": "INFO", "logger": "app.routes.healthcheck", "message": "Health check endpoint called", "request_id": "0b7acf76-a92e-4f75-ba68-6330a61bdd16"}
+{"timestamp": "2024-12-31T15:14:08", "level": "INFO", "logger": "app.models.model_loader", "message": "Model loaded successfully.", "request_id": null}
+{"timestamp": "2024-12-31T15:14:08", "level": "INFO", "logger": "app.main", "message": "Application startup: Printing registered routes.", "request_id": null}
+{"timestamp": "2024-12-31T15:14:08", "level": "INFO", "logger": "app.main", "message": "Route: /openapi.json -> openapi", "request_id": null}
+{"timestamp": "2024-12-31T15:14:08", "level": "INFO", "logger": "app.main", "message": "Route: /docs -> swagger_ui_html", "request_id": null}
+{"timestamp": "2024-12-31T15:14:08", "level": "INFO", "logger": "app.main", "message": "Route: /docs/oauth2-redirect -> swagger_ui_redirect", "request_id": null}
+{"timestamp": "2024-12-31T15:14:08", "level": "INFO", "logger": "app.main", "message": "Route: /redoc -> redoc_html", "request_id": null}
+{"timestamp": "2024-12-31T15:14:08", "level": "INFO", "logger": "app.main", "message": "Route: /health -> health_check", "request_id": null}
+{"timestamp": "2024-12-31T15:14:08", "level": "INFO", "logger": "app.main", "message": "Route: /predict -> get_prediction", "request_id": null}
+{"timestamp": "2024-12-31T15:15:57", "level": "ERROR", "logger": "app.models.model_loader", "message": "Failed to load model: Can't get attribute 'MockStringModel' on <module '__mp_main__' from '/Users/ish/miniconda3/envs/ml_microservice_env/bin/uvicorn'>", "request_id": null}
+{"timestamp": "2024-12-31T15:16:19", "level": "ERROR", "logger": "app.models.model_loader", "message": "Failed to load model: Can't get attribute 'MockStringModel' on <module '__mp_main__' from '/Users/ish/miniconda3/envs/ml_microservice_env/bin/uvicorn'>", "request_id": null}
+{"timestamp": "2024-12-31T15:17:46", "level": "ERROR", "logger": "app.models.model_loader", "message": "Failed to load model: Can't get attribute 'MockStringModel' on <module '__mp_main__' from '/Users/ish/miniconda3/envs/ml_microservice_env/bin/uvicorn'>", "request_id": null}
+{"timestamp": "2024-12-31T15:18:03", "level": "ERROR", "logger": "app.models.model_loader", "message": "Failed to load model: Can't get attribute 'MockStringModel' on <module '__mp_main__' from '/Users/ish/miniconda3/envs/ml_microservice_env/bin/uvicorn'>", "request_id": null}
+{"timestamp": "2024-12-31T15:19:34", "level": "ERROR", "logger": "app.models.model_loader", "message": "Failed to load model: Can't get attribute 'MockStringModel' on <module '__mp_main__' from '/Users/ish/miniconda3/envs/ml_microservice_env/bin/uvicorn'>", "request_id": null}
+{"timestamp": "2024-12-31T15:19:42", "level": "ERROR", "logger": "app.models.model_loader", "message": "Failed to load model: Can't get attribute 'MockStringModel' on <module '__mp_main__' from '/Users/ish/miniconda3/envs/ml_microservice_env/bin/uvicorn'>", "request_id": null}
+{"timestamp": "2024-12-31T15:22:22", "level": "INFO", "logger": "app.main", "message": "Application startup: Printing registered routes.", "request_id": null}
+{"timestamp": "2024-12-31T15:22:22", "level": "INFO", "logger": "app.main", "message": "Route: /openapi.json -> openapi", "request_id": null}
+{"timestamp": "2024-12-31T15:22:22", "level": "INFO", "logger": "app.main", "message": "Route: /docs -> swagger_ui_html", "request_id": null}
+{"timestamp": "2024-12-31T15:22:22", "level": "INFO", "logger": "app.main", "message": "Route: /docs/oauth2-redirect -> swagger_ui_redirect", "request_id": null}
+{"timestamp": "2024-12-31T15:22:22", "level": "INFO", "logger": "app.main", "message": "Route: /redoc -> redoc_html", "request_id": null}
+{"timestamp": "2024-12-31T15:22:22", "level": "INFO", "logger": "app.main", "message": "Route: /health -> health_check", "request_id": null}
+{"timestamp": "2024-12-31T15:22:22", "level": "INFO", "logger": "app.main", "message": "Route: /predict -> get_prediction", "request_id": null}
+{"timestamp": "2024-12-31T15:23:02", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "db234e8f-1341-45e2-8457-eba287d60116"}
+{"timestamp": "2024-12-31T15:23:02", "level": "INFO", "logger": "app.routes.healthcheck", "message": "Health check endpoint called", "request_id": "db234e8f-1341-45e2-8457-eba287d60116"}
+{"timestamp": "2024-12-31T15:23:08", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "44cb001c-e9c9-43ce-93d0-07f5b1ac7406"}
+{"timestamp": "2024-12-31T15:23:08", "level": "INFO", "logger": "app.routes.prediction", "message": "Prediction endpoint called", "request_id": "44cb001c-e9c9-43ce-93d0-07f5b1ac7406"}
+{"timestamp": "2024-12-31T15:23:08", "level": "INFO", "logger": "app.services.prediction_service", "message": "Received input for prediction: This is a sample input for the model.", "request_id": null}
+{"timestamp": "2024-12-31T15:23:08", "level": "INFO", "logger": "app.services.prediction_service", "message": "Prediction result: Processed: This is a sample input for the model.", "request_id": null}
+{"timestamp": "2024-12-31T15:23:08", "level": "INFO", "logger": "app.routes.prediction", "message": "Prediction successful: Processed: This is a sample input for the model.", "request_id": "44cb001c-e9c9-43ce-93d0-07f5b1ac7406"}
+{"timestamp": "2024-12-31T15:23:12", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "7ad4518d-1c5d-4d13-8ca6-b909528ad966"}
+{"timestamp": "2024-12-31T15:23:12", "level": "INFO", "logger": "app.routes.prediction", "message": "Prediction endpoint called", "request_id": "7ad4518d-1c5d-4d13-8ca6-b909528ad966"}
+{"timestamp": "2024-12-31T15:23:12", "level": "INFO", "logger": "app.services.prediction_service", "message": "Received input for prediction: This is a sample input for the model.", "request_id": null}
+{"timestamp": "2024-12-31T15:23:12", "level": "INFO", "logger": "app.services.prediction_service", "message": "Prediction result: Processed: This is a sample input for the model.", "request_id": null}
+{"timestamp": "2024-12-31T15:23:12", "level": "INFO", "logger": "app.routes.prediction", "message": "Prediction successful: Processed: This is a sample input for the model.", "request_id": "7ad4518d-1c5d-4d13-8ca6-b909528ad966"}
+{"timestamp": "2024-12-31T15:23:22", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "247ab95b-de99-461b-a123-c5993dec318e"}

@@ -11,14 +11,14 @@ logger = get_logger(__name__)
     tags=["Prediction"],
     summary="Prediction Endpoint",
     description=(
-        "Takes input features in JSON format and returns a prediction based on the pre-trained ML model."
+        "Takes a string input and returns a prediction as a string based on the pre-trained ML model."
     ),
     responses={
         200: {
             "description": "Prediction successfully returned.",
             "content": {
                 "application/json": {
-                    "example": {"prediction": [0]}
+                    "example": {"prediction": "Processed: This is a sample input for the model."}
                 }
             },
         },

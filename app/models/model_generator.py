@@ -1,19 +1,22 @@
+"""
+Generates and saves a sample mock model for testing.
+"""
+
 import pickle
-from sklearn.datasets import load_iris
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
+from app.models.mock_string_model import MockStringModel
+import logging
 
-# Load dataset
-iris = load_iris()
-X, y = iris.data, iris.target
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+logger = logging.getLogger(__name__)
 
-# Train model
-model = RandomForestClassifier(random_state=42)
-model.fit(X_train, y_train)
+def generate_mock_model():
+    """
+    Generates and saves a mock model for testing string input/output.
+    """
+    logger.info("Generating mock model...")
+    mock_model = MockStringModel()
+    with open("app/models/model.pkl", "wb") as f:
+        pickle.dump(mock_model, f)
+    logger.info("Mock model saved successfully at 'app/models/model.pkl'")
 
-# Save the model
-with open("app/models/model.pkl", "wb") as f:
-    pickle.dump(model, f)
-
-print("Model trained and saved successfully.")
+if __name__ == "__main__":
+    generate_mock_model()

@@ -4,8 +4,8 @@ class PredictionInput(BaseModel):
     """
     Schema for input data required by the prediction endpoint.
     """
-    features: list[float] = Field(
+    input_text: str = Field(
         ...,
-        description="A list of numerical features to be used for prediction.",
-        example=[5.1, 3.5, 1.4, 0.2],
+        description="A string input for the ML model to process and make predictions.",
+        example="This is a sample input for the model.",
     )
