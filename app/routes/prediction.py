@@ -3,8 +3,9 @@ from fastapi.security import APIKeyHeader, OAuth2PasswordBearer
 from app.schemas import PredictionInput, PredictionResponse
 from app.services.prediction_service import predict
 from app.logger import get_logger
-from app.utils.jwt import verify_jwt_token  # Import JWT verification function
+from app.utils.jwt import verify_jwt_token
 from app.config import Config
+from app.utils.metrics import PREDICTION_HIT_COUNTER, PREDICTION_RESPONSE_TIME  # Import metrics
 
 router = APIRouter()
 logger = get_logger(__name__)
@@ -12,6 +13,7 @@ logger = get_logger(__name__)
 # Authentication methods
 api_key_header = APIKeyHeader(name="X-API-KEY", auto_error=False)
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
+
 
 def get_current_user(token: str = Depends(oauth2_scheme)):
     """
@@ -33,6 +35,7 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
         logger.warning("Invalid or expired token provided.")
         raise HTTPException(status_code=401, detail="Invalid or expired token.")
 
+
 def validate_api_key(api_key: str = Depends(api_key_header)):
     """
     Validate the provided API key.
@@ -41,6 +44,7 @@ def validate_api_key(api_key: str = Depends(api_key_header)):
         logger.warning("Unauthorized access attempt with invalid API key.")
         raise HTTPException(status_code=401, detail="Invalid API key.")
     return api_key
+
 
 @router.post(
     "/predict",
@@ -90,10 +94,16 @@ def get_prediction(data: PredictionInput, request: Request):
     """
     request_id = request.state.request_id
     logger.info("Prediction endpoint called", extra={"request_id": request_id})
-    try:
-        result = predict(data, request_id)
-        logger.info(f"Prediction successful: {result}", extra={"request_id": request_id})
-        return {"prediction": result}
-    except Exception as e:
-        logger.error(f"Prediction failed: {str(e)}", extra={"request_id": request_id})
-        raise HTTPException(status_code=400, detail=f"Prediction failed: {str(e)}")
+
+    # Increment the hit counter for the /predict endpoint
+    PREDICTION_HIT_COUNTER.inc()
+
+    # Measure response time using a histogram
+    with PREDICTION_RESPONSE_TIME.time():
+        try:
+            result = predict(data, request_id)
+            logger.info(f"Prediction successful: {result}", extra={"request_id": request_id})
+            return {"prediction": result}
+        except Exception as e:
+            logger.error(f"Prediction failed: {str(e)}", extra={"request_id": request_id})
+            raise HTTPException(status_code=400, detail=f"Prediction failed: {str(e)}")

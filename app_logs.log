@@ -146,3 +146,7 @@
 {"timestamp": "2024-12-31T17:57:36", "level": "INFO", "logger": "app.services.prediction_service", "message": "Processing input: Valid input text", "request_id": "8e71a89d-483c-465f-9765-7e48ec22d085"}
 {"timestamp": "2024-12-31T17:57:36", "level": "INFO", "logger": "app.services.prediction_service", "message": "Prediction successful: Processed: Valid input text", "request_id": "8e71a89d-483c-465f-9765-7e48ec22d085"}
 {"timestamp": "2024-12-31T17:57:36", "level": "INFO", "logger": "app.routes.prediction", "message": "Prediction successful: Processed: Valid input text", "request_id": "8e71a89d-483c-465f-9765-7e48ec22d085"}
+{"timestamp": "2024-12-31T21:11:05", "level": "INFO", "logger": "app.main", "message": "Request ID 7d8f1af8-4a5f-4e16-a1dd-2733f7abbba4 assigned to incoming request.", "request_id": "7d8f1af8-4a5f-4e16-a1dd-2733f7abbba4"}
+{"timestamp": "2024-12-31T21:11:06", "level": "INFO", "logger": "app.main", "message": "Request ID b0fbe014-4a47-4cf0-a358-a5a2f929e5c0 assigned to incoming request.", "request_id": "b0fbe014-4a47-4cf0-a358-a5a2f929e5c0"}
+{"timestamp": "2024-12-31T21:11:07", "level": "INFO", "logger": "app.main", "message": "Request ID c36460fa-94b6-48b0-9ba5-18c4fc7d30a5 assigned to incoming request.", "request_id": "c36460fa-94b6-48b0-9ba5-18c4fc7d30a5"}
+{"timestamp": "2024-12-31T21:11:07", "level": "INFO", "logger": "app.main", "message": "Request ID 496ccee9-ca87-48ca-8db9-bdbfb517ec9e assigned to incoming request.", "request_id": "496ccee9-ca87-48ca-8db9-bdbfb517ec9e"}
