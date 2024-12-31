@@ -1,10 +1,11 @@
 """
 Main module for the ML Microservice application.
-Initializes the FastAPI application, includes routes, and sets up middleware.
+Initializes the FastAPI application, includes routes, middleware, and authentication.
 """
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Depends, HTTPException
 from fastapi.responses import JSONResponse
+from fastapi.security.api_key import APIKeyHeader
 import traceback
 import uuid
 from app.logger import get_logger
@@ -22,6 +23,19 @@ app = FastAPI(
 
 # Initialize logger
 logger = get_logger(__name__)
+
+# API key authentication
+api_key_header = APIKeyHeader(name="X-API-KEY", auto_error=False)
+
+
+def validate_api_key(api_key: str = Depends(api_key_header)):
+    """
+    Validate the provided API key against the configured value.
+    """
+    if api_key != Config.API_KEY:
+        logger.warning("Unauthorized access attempt with invalid API key.")
+        raise HTTPException(status_code=401, detail="Invalid API key.")
+    return api_key
 
 
 @app.middleware("http")
@@ -70,8 +84,19 @@ async def general_exception_handler(request: Request, exc: Exception):
 
 
 # Include routes from the routes package
-app.include_router(health_router)
-app.include_router(prediction_router)
+# Add the API key validation dependency for secure routes
+app.include_router(health_router, dependencies=[Depends(validate_api_key)])
+app.include_router(prediction_router, dependencies=[Depends(validate_api_key)])
+
+
+# Example of a secure health check endpoint
+@app.get("/secure-health", dependencies=[Depends(validate_api_key)])
+def secure_health():
+    """
+    A secure health check endpoint requiring API key authentication.
+    """
+    return {"status": "ok", "message": "Secure health endpoint is operational."}
+
 
 if __name__ == "__main__":
     import uvicorn

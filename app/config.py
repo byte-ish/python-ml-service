@@ -28,6 +28,9 @@ class Config:
     # Path to the serialized machine learning model
     MODEL_PATH: str = os.getenv("MODEL_PATH", "app/models/default_model.pkl")
 
+    # API key for authenticating requests
+    API_KEY: str = os.getenv("API_KEY", "defaultapikey")
+
     @classmethod
     def display_config(cls):
         """
@@ -40,4 +43,5 @@ class Config:
             "ENVIRONMENT": cls.ENVIRONMENT,
             "LOG_LEVEL": cls.LOG_LEVEL,
             "MODEL_PATH": cls.MODEL_PATH,
+            "API_KEY": "********",  # Mask API key for display
         }
