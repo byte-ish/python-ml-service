@@ -1,21 +1,19 @@
-"""
-Service for handling predictions.
-"""
-from app.models.ml_model import load_model, predict_with_model
-from app.logger import LOGGER
+from app.models.model_loader import load_model
+from app.schemas import PredictionInput
+from app.logger import get_logger
+from app.exceptions import PredictionError
 
-# Load the model at startup
-MODEL = load_model()
+logger = get_logger(__name__)
+model = load_model()
 
-def predict(input_data: dict) -> list:
-    """
-    Predict the output based on input data using the loaded model.
-
-    Args:
-        input_data (dict): Input data for prediction.
-
-    Returns:
-        list: Prediction results.
-    """
-    LOGGER.debug("Performing prediction with input: %s", input_data)
-    return predict_with_model(MODEL, input_data)
+def predict(data: PredictionInput):
+    """Perform prediction using the loaded model."""
+    try:
+        # Input should be a 2D list for the Iris model
+        input_data = [data.features]
+        prediction = model.predict(input_data)
+        logger.info(f"Prediction successful: {prediction}")
+        return prediction.tolist()
+    except Exception as e:
+        logger.error(f"Prediction failed: {e}")
+        raise PredictionError("Error during prediction.")

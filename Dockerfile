@@ -1,22 +1,17 @@
 # Base image
-FROM python:3.9-slim
+FROM python:3.10-slim
 
-# Set the working directory
+# Working directory
 WORKDIR /app
 
-# Copy requirements and install dependencies
-COPY requirements.txt .
+# Copy files
+COPY . /app
+
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy project files
-COPY . .
-
-# Add a non-root user
-RUN useradd -m appuser
-USER appuser
-
-# Expose the application port
+# Expose the port
 EXPOSE 8000
 
-# Start the FastAPI application
+# Run the service
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
