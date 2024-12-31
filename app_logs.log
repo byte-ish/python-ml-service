@@ -1,0 +1,23 @@
+{"timestamp": "2024-12-31T14:26:28", "level": "INFO", "logger": "app.models.model_loader", "message": "Model loaded successfully.", "request_id": null}
+{"timestamp": "2024-12-31T14:44:26", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "fe1f6dc2-bf6b-4ca3-b6f7-cadfcd652a85"}
+{"timestamp": "2024-12-31T14:44:31", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "e17a14e5-74b6-44f3-8834-46e59d9a73ec"}
+{"timestamp": "2024-12-31T14:45:08", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "ac71f7bf-90d8-40b1-a2a1-01904487d990"}
+{"timestamp": "2024-12-31T14:45:09", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "8c603514-0567-49ac-81dc-5a0f5674d015"}
+{"timestamp": "2024-12-31T14:45:46", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "eda31688-e0b3-467b-9427-e25612ac0c05"}
+{"timestamp": "2024-12-31T14:45:47", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "19315a90-ba04-43b8-bb5f-e3bcd4a9e56f"}
+{"timestamp": "2024-12-31T14:48:18", "level": "ERROR", "logger": "app.models.model_loader", "message": "Model file not found at app/models/development_model.pkl.", "request_id": null}
+{"timestamp": "2024-12-31T14:48:25", "level": "ERROR", "logger": "app.models.model_loader", "message": "Model file not found at app/models/development_model.pkl.", "request_id": null}
+{"timestamp": "2024-12-31T14:48:34", "level": "ERROR", "logger": "app.models.model_loader", "message": "Model file not found at app/models/development_model.pkl.", "request_id": null}
+{"timestamp": "2024-12-31T14:49:01", "level": "INFO", "logger": "app.models.model_loader", "message": "Model loaded successfully.", "request_id": null}
+{"timestamp": "2024-12-31T14:49:01", "level": "INFO", "logger": "app.main", "message": "Application startup: Printing registered routes.", "request_id": null}
+{"timestamp": "2024-12-31T14:49:01", "level": "INFO", "logger": "app.main", "message": "Route: /openapi.json -> openapi", "request_id": null}
+{"timestamp": "2024-12-31T14:49:01", "level": "INFO", "logger": "app.main", "message": "Route: /docs -> swagger_ui_html", "request_id": null}
+{"timestamp": "2024-12-31T14:49:01", "level": "INFO", "logger": "app.main", "message": "Route: /docs/oauth2-redirect -> swagger_ui_redirect", "request_id": null}
+{"timestamp": "2024-12-31T14:49:01", "level": "INFO", "logger": "app.main", "message": "Route: /redoc -> redoc_html", "request_id": null}
+{"timestamp": "2024-12-31T14:49:01", "level": "INFO", "logger": "app.main", "message": "Route: /health -> health_check", "request_id": null}
+{"timestamp": "2024-12-31T14:49:01", "level": "INFO", "logger": "app.main", "message": "Route: /predict -> get_prediction", "request_id": null}
+{"timestamp": "2024-12-31T14:49:33", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "5e7cf3f6-f8bd-438a-b087-d22a9d59eb7d"}
+{"timestamp": "2024-12-31T14:49:33", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "924f6666-094e-4b6d-9338-2b24fdd6fe8d"}
+{"timestamp": "2024-12-31T14:50:04", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "33ade8af-92a6-4466-b918-516d0aa3dcc3"}
+{"timestamp": "2024-12-31T14:50:04", "level": "INFO", "logger": "app.routes.healthcheck", "message": "Health check called", "request_id": "33ade8af-92a6-4466-b918-516d0aa3dcc3"}
+{"timestamp": "2024-12-31T14:54:53", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "6896dc69-c988-4aff-b13a-9b331657c066"}

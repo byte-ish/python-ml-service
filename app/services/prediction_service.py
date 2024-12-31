@@ -1,19 +1,19 @@
+from fastapi import Request
 from app.models.model_loader import load_model
-from app.schemas import PredictionInput
 from app.logger import get_logger
-from app.exceptions import PredictionError
 
 logger = get_logger(__name__)
 model = load_model()
 
-def predict(data: PredictionInput):
-    """Perform prediction using the loaded model."""
+def predict(features, request: Request):
+    """Make predictions and log with request ID."""
     try:
-        # Input should be a 2D list for the Iris model
-        input_data = [data.features]
-        prediction = model.predict(input_data)
-        logger.info(f"Prediction successful: {prediction}")
+        prediction = model.predict([features])
+        logger.info(
+            f"Prediction successful: {prediction}",
+            extra={"request_id": request.state.request_id}
+        )
         return prediction.tolist()
     except Exception as e:
-        logger.error(f"Prediction failed: {e}")
-        raise PredictionError("Error during prediction.")
+        logger.error(f"Prediction failed: {e}", extra={"request_id": request.state.request_id})
+        raise
