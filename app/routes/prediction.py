@@ -1,9 +1,5 @@
-"""
-Defines the API routes for prediction.
-"""
-
 from fastapi import APIRouter, HTTPException, Request
-from app.schemas import PredictionInput
+from app.schemas import PredictionInput, PredictionResponse
 from app.services.prediction_service import predict
 from app.logger import get_logger
 
@@ -18,15 +14,8 @@ logger = get_logger(__name__)
     description=(
         "Takes a string input and returns a prediction as a string based on the pre-trained ML model."
     ),
+    response_model=PredictionResponse,
     responses={
-        200: {
-            "description": "Prediction successfully returned.",
-            "content": {
-                "application/json": {
-                    "example": {"prediction": "Processed: This is a sample input for the model."}
-                }
-            },
-        },
         400: {
             "description": "Invalid input or prediction error.",
             "content": {
