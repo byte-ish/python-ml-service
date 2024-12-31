@@ -14,7 +14,19 @@ from app.config import Config
 app = FastAPI(
     title="ML Model Microservice",
     version="1.0",
-    description="A microservice for ML model inference and health checks."
+    description=(
+        "This microservice provides RESTful APIs for making predictions using a pre-trained "
+        "ML model and includes health check endpoints for monitoring."
+    ),
+    terms_of_service="http://example.com/terms/",
+    contact={
+        "name": "Ish",
+        "email": "support@example.com",
+    },
+    license_info={
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT",
+    },
 )
 
 # Initialize logger

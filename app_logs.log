@@ -21,3 +21,24 @@
 {"timestamp": "2024-12-31T14:50:04", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "33ade8af-92a6-4466-b918-516d0aa3dcc3"}
 {"timestamp": "2024-12-31T14:50:04", "level": "INFO", "logger": "app.routes.healthcheck", "message": "Health check called", "request_id": "33ade8af-92a6-4466-b918-516d0aa3dcc3"}
 {"timestamp": "2024-12-31T14:54:53", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "6896dc69-c988-4aff-b13a-9b331657c066"}
+{"timestamp": "2024-12-31T14:58:45", "level": "INFO", "logger": "app.models.model_loader", "message": "Model loaded successfully.", "request_id": null}
+{"timestamp": "2024-12-31T14:58:45", "level": "INFO", "logger": "app.main", "message": "Application startup: Printing registered routes.", "request_id": null}
+{"timestamp": "2024-12-31T14:58:45", "level": "INFO", "logger": "app.main", "message": "Route: /openapi.json -> openapi", "request_id": null}
+{"timestamp": "2024-12-31T14:58:45", "level": "INFO", "logger": "app.main", "message": "Route: /docs -> swagger_ui_html", "request_id": null}
+{"timestamp": "2024-12-31T14:58:45", "level": "INFO", "logger": "app.main", "message": "Route: /docs/oauth2-redirect -> swagger_ui_redirect", "request_id": null}
+{"timestamp": "2024-12-31T14:58:45", "level": "INFO", "logger": "app.main", "message": "Route: /redoc -> redoc_html", "request_id": null}
+{"timestamp": "2024-12-31T14:58:45", "level": "INFO", "logger": "app.main", "message": "Route: /health -> health_check", "request_id": null}
+{"timestamp": "2024-12-31T14:58:45", "level": "INFO", "logger": "app.main", "message": "Route: /predict -> get_prediction", "request_id": null}
+{"timestamp": "2024-12-31T15:01:38", "level": "INFO", "logger": "app.models.model_loader", "message": "Model loaded successfully.", "request_id": null}
+{"timestamp": "2024-12-31T15:01:38", "level": "INFO", "logger": "app.main", "message": "Application startup: Printing registered routes.", "request_id": null}
+{"timestamp": "2024-12-31T15:01:38", "level": "INFO", "logger": "app.main", "message": "Route: /openapi.json -> openapi", "request_id": null}
+{"timestamp": "2024-12-31T15:01:38", "level": "INFO", "logger": "app.main", "message": "Route: /docs -> swagger_ui_html", "request_id": null}
+{"timestamp": "2024-12-31T15:01:38", "level": "INFO", "logger": "app.main", "message": "Route: /docs/oauth2-redirect -> swagger_ui_redirect", "request_id": null}
+{"timestamp": "2024-12-31T15:01:38", "level": "INFO", "logger": "app.main", "message": "Route: /redoc -> redoc_html", "request_id": null}
+{"timestamp": "2024-12-31T15:01:38", "level": "INFO", "logger": "app.main", "message": "Route: /health -> health_check", "request_id": null}
+{"timestamp": "2024-12-31T15:01:38", "level": "INFO", "logger": "app.main", "message": "Route: /predict -> get_prediction", "request_id": null}
+{"timestamp": "2024-12-31T15:01:59", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "845636c8-d1f9-43e8-99ce-a2928a56e609"}
+{"timestamp": "2024-12-31T15:01:59", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "e86d3a3a-9cf7-4feb-8db0-56b3357e4642"}
+{"timestamp": "2024-12-31T15:01:59", "level": "WARNING", "logger": "fastapi", "message": "email-validator not installed, email fields will be treated as str.\nTo install, run: pip install email-validator", "request_id": null}
+{"timestamp": "2024-12-31T15:02:10", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "0b7acf76-a92e-4f75-ba68-6330a61bdd16"}
+{"timestamp": "2024-12-31T15:02:10", "level": "INFO", "logger": "app.routes.healthcheck", "message": "Health check endpoint called", "request_id": "0b7acf76-a92e-4f75-ba68-6330a61bdd16"}
