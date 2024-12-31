@@ -110,3 +110,14 @@
 {"timestamp": "2024-12-31T16:08:29", "level": "INFO", "logger": "app.services.prediction_service", "message": "Processing input: Valid text", "request_id": "d941e387-15a8-4c57-b69f-3993f8805adf"}
 {"timestamp": "2024-12-31T16:08:29", "level": "INFO", "logger": "app.services.prediction_service", "message": "Prediction successful: Processed: Valid text", "request_id": "d941e387-15a8-4c57-b69f-3993f8805adf"}
 {"timestamp": "2024-12-31T16:08:29", "level": "INFO", "logger": "app.routes.prediction", "message": "Prediction successful: Processed: Valid text", "request_id": "d941e387-15a8-4c57-b69f-3993f8805adf"}
+{"timestamp": "2024-12-31T16:23:30", "level": "INFO", "logger": "app.main", "message": "Request ID 1378e5f1-e626-47b1-b9b4-86c04c55449c assigned to incoming request.", "request_id": "1378e5f1-e626-47b1-b9b4-86c04c55449c"}
+{"timestamp": "2024-12-31T16:23:30", "level": "WARNING", "logger": "app.main", "message": "Unauthorized access attempt with invalid API key.", "request_id": null}
+{"timestamp": "2024-12-31T16:24:29", "level": "INFO", "logger": "app.main", "message": "Request ID f549aac6-47cb-41e0-9981-19f59caefe32 assigned to incoming request.", "request_id": "f549aac6-47cb-41e0-9981-19f59caefe32"}
+{"timestamp": "2024-12-31T16:24:29", "level": "INFO", "logger": "app.routes.healthcheck", "message": "Health check endpoint called", "request_id": "f549aac6-47cb-41e0-9981-19f59caefe32"}
+{"timestamp": "2024-12-31T16:34:35", "level": "INFO", "logger": "app.main", "message": "Request ID afb7c103-bb09-46d7-aa08-b025b70f3efd assigned to incoming request.", "request_id": "afb7c103-bb09-46d7-aa08-b025b70f3efd"}
+{"timestamp": "2024-12-31T16:36:53", "level": "INFO", "logger": "app.main", "message": "Request ID 0c37c7e6-3645-47d5-adf2-565af804c611 assigned to incoming request.", "request_id": "0c37c7e6-3645-47d5-adf2-565af804c611"}
+{"timestamp": "2024-12-31T16:37:42", "level": "INFO", "logger": "app.main", "message": "Request ID eede607d-75d4-4d32-be1c-2fbbb56bd4a6 assigned to incoming request.", "request_id": "eede607d-75d4-4d32-be1c-2fbbb56bd4a6"}
+{"timestamp": "2024-12-31T16:37:42", "level": "INFO", "logger": "app.routes.prediction", "message": "Prediction endpoint called", "request_id": "eede607d-75d4-4d32-be1c-2fbbb56bd4a6"}
+{"timestamp": "2024-12-31T16:37:42", "level": "INFO", "logger": "app.services.prediction_service", "message": "Processing input: Valid input text", "request_id": "eede607d-75d4-4d32-be1c-2fbbb56bd4a6"}
+{"timestamp": "2024-12-31T16:37:42", "level": "INFO", "logger": "app.services.prediction_service", "message": "Prediction successful: Processed: Valid input text", "request_id": "eede607d-75d4-4d32-be1c-2fbbb56bd4a6"}
+{"timestamp": "2024-12-31T16:37:42", "level": "INFO", "logger": "app.routes.prediction", "message": "Prediction successful: Processed: Valid input text", "request_id": "eede607d-75d4-4d32-be1c-2fbbb56bd4a6"}

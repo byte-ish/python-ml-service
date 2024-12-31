@@ -26,10 +26,15 @@ class Config:
     LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
 
     # Path to the serialized machine learning model
-    MODEL_PATH: str = os.getenv("MODEL_PATH", "app/models/default_model.pkl")
+    MODEL_PATH: str = os.getenv("MODEL_PATH", "app/models/model.pkl")
 
     # API key for authenticating requests
     API_KEY: str = os.getenv("API_KEY", "defaultapikey")
+
+    # JWT Configuration
+    JWT_SECRET_KEY: str = os.getenv("JWT_SECRET_KEY", "mysecretjwtkey")
+    JWT_ALGORITHM: str = os.getenv("JWT_ALGORITHM", "HS256")
+    JWT_EXPIRATION_MINUTES: int = int(os.getenv("JWT_EXPIRATION_MINUTES", 30))
 
     @classmethod
     def display_config(cls):
@@ -43,5 +48,8 @@ class Config:
             "ENVIRONMENT": cls.ENVIRONMENT,
             "LOG_LEVEL": cls.LOG_LEVEL,
             "MODEL_PATH": cls.MODEL_PATH,
-            "API_KEY": "********",  # Mask API key for display
+            "API_KEY": "********",  # Mask sensitive info
+            "JWT_SECRET_KEY": "********",  # Mask sensitive info
+            "JWT_ALGORITHM": cls.JWT_ALGORITHM,
+            "JWT_EXPIRATION_MINUTES": cls.JWT_EXPIRATION_MINUTES,
         }
