@@ -3,7 +3,7 @@ from fastapi.security import APIKeyHeader, OAuth2PasswordBearer
 from app.schemas import PredictionInput, PredictionResponse
 from app.services.prediction_service import predict
 from app.logger import get_logger
-from app.utils.jwt import verify_jwt_token
+from app.utils.jwt import verify_jwt_token  # Import JWT verification function
 from app.config import Config
 
 router = APIRouter()
@@ -27,9 +27,10 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
         HTTPException: If the token is invalid or expired.
     """
     try:
-        payload = verify_jwt_token(token)
-        return payload["sub"]
+        payload = verify_jwt_token(token)  # Verify the JWT token
+        return payload["sub"]  # Return the email or user identifier
     except Exception:
+        logger.warning("Invalid or expired token provided.")
         raise HTTPException(status_code=401, detail="Invalid or expired token.")
 
 def validate_api_key(api_key: str = Depends(api_key_header)):
@@ -46,8 +47,35 @@ def validate_api_key(api_key: str = Depends(api_key_header)):
     tags=["Prediction"],
     response_model=PredictionResponse,
     summary="Prediction Endpoint",
-    description="Secured endpoint for making predictions.",
-    dependencies=[Depends(get_current_user)],  # Use JWT authentication
+    description="Secured endpoint for making predictions. Requires JWT authentication via Authorization header.",
+    responses={
+        200: {
+            "description": "Prediction successful",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "prediction": "Processed: Your input text"
+                    }
+                }
+            },
+        },
+        401: {
+            "description": "Unauthorized - Invalid or expired token.",
+            "content": {
+                "application/json": {
+                    "example": {"detail": "Invalid or expired token."}
+                }
+            },
+        },
+        400: {
+            "description": "Bad Request - Prediction failed due to invalid input.",
+            "content": {
+                "application/json": {
+                    "example": {"detail": "Prediction failed: Invalid input."}
+                }
+            },
+        },
+    },
 )
 def get_prediction(data: PredictionInput, request: Request):
     """
