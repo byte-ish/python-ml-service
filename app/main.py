@@ -4,29 +4,20 @@ Initializes the FastAPI application, includes routes, and sets up middleware.
 """
 
 from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
+import traceback
 import uuid
 from app.logger import get_logger
 from app.routes.healthcheck import router as health_router
 from app.routes.prediction import router as prediction_router
+from app.exceptions import PredictionError, ServiceError
 from app.config import Config
 
 # Initialize FastAPI app
 app = FastAPI(
     title="ML Model Microservice",
     version="1.0",
-    description=(
-        "This microservice provides RESTful APIs for making predictions using a pre-trained "
-        "ML model and includes health check endpoints for monitoring."
-    ),
-    terms_of_service="http://example.com/terms/",
-    contact={
-        "name": "Ish",
-        "email": "support@example.com",
-    },
-    license_info={
-        "name": "MIT",
-        "url": "https://opensource.org/licenses/MIT",
-    },
+    description="A microservice for ML model inference and health checks.",
 )
 
 # Initialize logger
@@ -37,46 +28,53 @@ logger = get_logger(__name__)
 async def add_request_id_middleware(request: Request, call_next):
     """
     Middleware to add a unique request ID to each incoming request.
-    The request ID is included in logs and returned in the response headers.
-
-    Args:
-        request (Request): The incoming HTTP request.
-        call_next (Callable): The next middleware or route handler.
-
-    Returns:
-        Response: The HTTP response with the request ID header.
     """
     request_id = str(uuid.uuid4())
     request.state.request_id = request_id
-
-    logger.info("Received request", extra={"request_id": request_id})
-
+    logger.info(f"Request ID {request_id} assigned to incoming request.", extra={"request_id": request_id})
     response = await call_next(request)
     response.headers["X-Request-ID"] = request_id
     return response
+
+
+@app.exception_handler(PredictionError)
+async def prediction_error_handler(request: Request, exc: PredictionError):
+    """
+    Handles PredictionError exceptions and returns a standardized error response.
+    """
+    logger.error(
+        f"Prediction error: {exc.detail} | Request ID: {request.state.request_id}"
+    )
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"error": exc.detail, "request_id": request.state.request_id},
+    )
+
+
+@app.exception_handler(Exception)
+async def general_exception_handler(request: Request, exc: Exception):
+    """
+    Handles all unexpected exceptions and logs the stack trace.
+    """
+    logger.error(
+        f"Unexpected error: {str(exc)} | Request ID: {request.state.request_id}\n"
+        f"Traceback: {traceback.format_exc()}"
+    )
+    return JSONResponse(
+        status_code=500,
+        content={
+            "error": "An unexpected error occurred. Please try again later.",
+            "request_id": request.state.request_id,
+        },
+    )
 
 
 # Include routes from the routes package
 app.include_router(health_router)
 app.include_router(prediction_router)
 
-
-# Debugging: Print routes on startup for verification
-@app.on_event("startup")
-async def print_routes():
-    """
-    Prints the list of registered routes for debugging during startup.
-    """
-    logger.info("Application startup: Printing registered routes.")
-    for route in app.routes:
-        logger.info(f"Route: {route.path} -> {route.name}")
-
-
 if __name__ == "__main__":
     import uvicorn
 
-    # Print application configuration for debugging
     logger.info(f"Application configuration: {Config.display_config()}")
-
-    # Run the FastAPI application
     uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)

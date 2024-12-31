@@ -76,3 +76,20 @@
 {"timestamp": "2024-12-31T15:23:12", "level": "INFO", "logger": "app.services.prediction_service", "message": "Prediction result: Processed: This is a sample input for the model.", "request_id": null}
 {"timestamp": "2024-12-31T15:23:12", "level": "INFO", "logger": "app.routes.prediction", "message": "Prediction successful: Processed: This is a sample input for the model.", "request_id": "7ad4518d-1c5d-4d13-8ca6-b909528ad966"}
 {"timestamp": "2024-12-31T15:23:22", "level": "INFO", "logger": "app.main", "message": "Received request", "request_id": "247ab95b-de99-461b-a123-c5993dec318e"}
+{"timestamp": "2024-12-31T15:30:08", "level": "INFO", "logger": "app.main", "message": "Application startup: Printing registered routes.", "request_id": null}
+{"timestamp": "2024-12-31T15:30:08", "level": "INFO", "logger": "app.main", "message": "Route: /openapi.json -> openapi", "request_id": null}
+{"timestamp": "2024-12-31T15:30:08", "level": "INFO", "logger": "app.main", "message": "Route: /docs -> swagger_ui_html", "request_id": null}
+{"timestamp": "2024-12-31T15:30:08", "level": "INFO", "logger": "app.main", "message": "Route: /docs/oauth2-redirect -> swagger_ui_redirect", "request_id": null}
+{"timestamp": "2024-12-31T15:30:08", "level": "INFO", "logger": "app.main", "message": "Route: /redoc -> redoc_html", "request_id": null}
+{"timestamp": "2024-12-31T15:30:08", "level": "INFO", "logger": "app.main", "message": "Route: /health -> health_check", "request_id": null}
+{"timestamp": "2024-12-31T15:30:08", "level": "INFO", "logger": "app.main", "message": "Route: /predict -> get_prediction", "request_id": null}
+{"timestamp": "2024-12-31T15:31:41", "level": "INFO", "logger": "app.main", "message": "Request ID 64700366-fa44-4fc9-9c4e-d063a9e499a4 assigned to incoming request.", "request_id": null}
+{"timestamp": "2024-12-31T15:31:41", "level": "INFO", "logger": "app.routes.prediction", "message": "Prediction endpoint called", "request_id": "64700366-fa44-4fc9-9c4e-d063a9e499a4"}
+{"timestamp": "2024-12-31T15:31:41", "level": "INFO", "logger": "app.services.prediction_service", "message": "Processing input: ", "request_id": null}
+{"timestamp": "2024-12-31T15:31:41", "level": "INFO", "logger": "app.services.prediction_service", "message": "Prediction successful: Processed: ", "request_id": null}
+{"timestamp": "2024-12-31T15:31:41", "level": "INFO", "logger": "app.routes.prediction", "message": "Prediction successful: Processed: ", "request_id": "64700366-fa44-4fc9-9c4e-d063a9e499a4"}
+{"timestamp": "2024-12-31T15:35:34", "level": "INFO", "logger": "app.main", "message": "Request ID d25f2c8b-d1b4-460b-b27e-26f0def2adb3 assigned to incoming request.", "request_id": "d25f2c8b-d1b4-460b-b27e-26f0def2adb3"}
+{"timestamp": "2024-12-31T15:35:34", "level": "INFO", "logger": "app.routes.prediction", "message": "Prediction endpoint called", "request_id": "d25f2c8b-d1b4-460b-b27e-26f0def2adb3"}
+{"timestamp": "2024-12-31T15:35:34", "level": "INFO", "logger": "app.services.prediction_service", "message": "Processing input: ", "request_id": "d25f2c8b-d1b4-460b-b27e-26f0def2adb3"}
+{"timestamp": "2024-12-31T15:35:34", "level": "INFO", "logger": "app.services.prediction_service", "message": "Prediction successful: Processed: ", "request_id": "d25f2c8b-d1b4-460b-b27e-26f0def2adb3"}
+{"timestamp": "2024-12-31T15:35:34", "level": "INFO", "logger": "app.routes.prediction", "message": "Prediction successful: Processed: ", "request_id": "d25f2c8b-d1b4-460b-b27e-26f0def2adb3"}
