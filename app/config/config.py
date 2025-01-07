@@ -26,7 +26,7 @@ class Config:
     LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
 
     # Path to the serialized machine learning model
-    MODEL_PATH: str = os.getenv("MODEL_PATH", "app/models/model.pkl")
+    MODEL_PATH: str = os.getenv("MODEL_PATH", "app/models/default_model.pkl")
 
     # API key for authenticating requests
     API_KEY: str = os.getenv("API_KEY", "defaultapikey")

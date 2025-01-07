@@ -14,9 +14,9 @@ def generate_mock_model():
     """
     logger.info("Generating mock model...")
     mock_model = MockStringModel()
-    with open("app/models/model.pkl", "wb") as f:
+    with open("app/models/default_model.pkl", "wb") as f:
         pickle.dump(mock_model, f)
-    logger.info("Mock model saved successfully at 'app/models/model.pkl'")
+    logger.info("Mock model saved successfully at 'app/models/default_model.pkl'")
 
 if __name__ == "__main__":
     generate_mock_model()

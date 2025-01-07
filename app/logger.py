@@ -2,7 +2,7 @@ import logging
 import logging.handlers
 import json
 from fastapi.logger import logger as fastapi_logger
-from app.config import Config
+from app.config.config import Config
 
 class CustomJSONFormatter(logging.Formatter):
     """Custom JSON formatter for structured logging."""

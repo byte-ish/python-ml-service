@@ -1,31 +1,19 @@
-"""
-Loads the serialized ML model from a file.
-"""
+# app/models/model_loader.py
+from app.models.model_registry import ModelRegistry
 
-import pickle
-from app.models.mock_string_model import MockStringModel  # Ensure import for unpickling
-from app.config import Config
-import logging
-
-logger = logging.getLogger(__name__)
-
-def load_model():
+def load_model(model_id: str):
     """
-    Load the ML model from the path specified in the configuration.
+    Load a model using the ModelRegistry.
+
+    Args:
+        model_id (str): Unique identifier for the model.
 
     Returns:
-        object: The loaded ML model.
+        Any: Loaded ML model.
+
+    Raises:
+        KeyError: If the model ID is not registered.
+        FileNotFoundError: If the model file is missing.
+        RuntimeError: If there is an error during loading.
     """
-    model_path = Config.MODEL_PATH
-    try:
-        logger.info(f"Loading model from {model_path}...")
-        with open(model_path, "rb") as file:
-            model = pickle.load(file)
-        logger.info("Model loaded successfully.")
-        return model
-    except FileNotFoundError:
-        logger.error(f"Model file not found at {model_path}.")
-        raise
-    except Exception as e:
-        logger.error(f"Error while loading the model: {str(e)}")
-        raise
+    return ModelRegistry.load_model(model_id)

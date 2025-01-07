@@ -1,37 +1,36 @@
-"""
-Business logic for making predictions using the ML model.
-"""
-
+# app/services/prediction_service.py
+from time import time
 from app.models.model_loader import load_model
 from app.logger import get_logger
-from app.exceptions import PredictionError
+from app.config.registry import ProcessorRegistry
 
 logger = get_logger(__name__)
-model = load_model()
 
+def predict(input_data: dict, model_id: str, model_type: str, request_id: str):
+    logger.info(f"Prediction request received for Model ID: {model_id}. Request ID: {request_id}")
+    start_time = time()
 
-def predict(data, request_id):
-    """
-    Perform prediction using the loaded model.
-
-    Args:
-        data (PredictionInput): Validated input data.
-        request_id (str): Unique ID for tracking the request.
-
-    Returns:
-        str: Prediction result from the model.
-    """
     try:
-        input_text = data.input_text
-        logger.info(f"Processing input: {input_text}", extra={"request_id": request_id})
+        # Load the model
+        model = load_model(model_id)
+        logger.info(f"Model '{model_id}' loaded successfully for Request ID: {request_id}")
 
-        # Perform prediction
-        prediction = model.predict([input_text])[0]
-        logger.info(f"Prediction successful: {prediction}", extra={"request_id": request_id})
-        return prediction
-    except ValueError as e:
-        logger.error(f"Value error during prediction: {str(e)}", extra={"request_id": request_id})
-        raise PredictionError("Invalid input for prediction.")
+        # Preprocess input
+        preprocessor = ProcessorRegistry.get_preprocessor(model_type)
+        preprocessed_input = preprocessor.preprocess(input_data)
+
+        # Perform inference
+        raw_prediction = model.predict(preprocessed_input["features"])
+        logger.info(f"Raw prediction: {raw_prediction}")
+
+        # Postprocess output
+        postprocessor = ProcessorRegistry.get_postprocessor(model_type)
+        result = postprocessor.postprocess(raw_prediction)
+
     except Exception as e:
-        logger.error(f"Unexpected error during prediction: {str(e)}", extra={"request_id": request_id})
+        logger.error(f"Error during prediction: {str(e)}", exc_info=True)
         raise
+
+    total_time = time() - start_time
+    logger.info(f"Prediction completed in {total_time:.4f} seconds for Request ID: {request_id}")
+    return result

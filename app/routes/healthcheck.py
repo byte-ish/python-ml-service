@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request, Depends, HTTPException
 from fastapi.security.api_key import APIKeyHeader
 from app.logger import get_logger
-from app.config import Config
+from app.config.config import Config
 
 router = APIRouter()
 logger = get_logger(__name__)

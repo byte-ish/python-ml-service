@@ -12,7 +12,8 @@ from app.logger import get_logger
 from app.routes.healthcheck import router as health_router
 from app.routes.prediction import router as prediction_router
 from app.routes.auth import router as auth_router
-from app.config import Config
+from app.models.model_registry import ModelRegistry
+from app.config.config import Config
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -56,6 +57,21 @@ async def general_exception_handler(request: Request, exc: Exception):
             "request_id": request.state.request_id,
         },
     )
+
+@app.on_event("startup")
+async def startup_event():
+    """
+    Actions to perform during the startup of the application.
+    """
+    logger.info("Application startup: Registering ML models.")
+
+    # Register ML models
+    try:
+        ModelRegistry.register_model("model_a", "app/models/model_a.pkl")
+        ModelRegistry.register_model("model_b", "app/models/model_b.pkl")
+        logger.info("All models registered successfully.")
+    except Exception as e:
+        logger.error(f"Error during model registration: {str(e)}")
 
 # Include routers for various functionalities
 app.include_router(health_router)

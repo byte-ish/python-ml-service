@@ -4,7 +4,7 @@ Utility functions for creating and verifying JWT tokens.
 
 from datetime import datetime, timedelta
 from jose import jwt
-from app.config import Config
+from app.config.config import Config
 
 def create_jwt_token(data: dict):
     """
