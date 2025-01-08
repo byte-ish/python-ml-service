@@ -1,26 +1,27 @@
 # Core Libraries
-fastapi==0.100.0         # Framework for building APIs
-uvicorn==0.22.0          # ASGI server for running FastAPI applications
-pydantic==1.10.11        # Data validation and settings management
+fastapi==0.100.0          # Framework for building APIs
+uvicorn==0.22.0           # ASGI server for running FastAPI applications
+pydantic==1.10.11         # Data validation and settings management
 
 # Machine Learning
-scikit-learn==1.3.1      # ML library used for model training and inference
-pandas==2.1.3            # Data manipulation and input preprocessing
-numpy==1.25.0            # Additional support for numerical operations (required by scikit-learn)
+scikit-learn==1.3.1       # ML library used for model training and inference
+pandas==2.1.3             # Data manipulation and input preprocessing
+numpy==1.25.2             # Additional support for numerical operations (required by scikit-learn)
 
 # Environment Management
-python-dotenv==1.0.0     # Load environment variables from .env files
+python-dotenv==1.0.0      # Load environment variables from .env files
 
 # Logging and Monitoring
-loguru==0.7.0            # Advanced logging library
+loguru==0.7.0             # Advanced logging library
 prometheus-fastapi-instrumentator==5.9.1 # Metrics collection for Prometheus monitoring
-prometheus-client==0.17.0  # Expose metrics in a Prometheus-compatible format
+prometheus-client==0.17.0 # Expose metrics in a Prometheus-compatible format
 
 # Testing
-pytest==7.4.2            # Framework for writing and running tests
-pytest-cov==4.1.0        # Coverage report for pytest
+pytest==7.4.2             # Framework for writing and running tests
+pytest-cov==4.1.0         # Coverage report for pytest
+httpx==0.24.1             # HTTP client required for FastAPI TestClient
 fastapi[testing]==0.100.0 # Testing utilities for FastAPI applications
 
 # Linting and Formatting (Optional for Development)
-flake8==6.1.0            # Linter for enforcing Python style
-black==23.9.1            # Code formatter for consistent style
+flake8==6.1.0             # Linter for enforcing Python style
+black==23.9.1             # Code formatter for consistent style
