@@ -1,6 +1,13 @@
-# app/config/registry.py
+"""
+Registry for preprocessors and postprocessors for different model types.
+"""
 from app.preprocessors.sklearn_preprocessor import SklearnPreprocessor
 from app.postprocessors.sklearn_postprocessor import SklearnPostprocessor
+from app.preprocessors.numerical_preprocessor import NumericalPreprocessor
+from app.postprocessors.numerical_postprocessor import NumericalPostprocessor
+from app.logger import get_logger
+
+logger = get_logger(__name__)
 
 
 class ProcessorRegistry:
@@ -9,41 +16,33 @@ class ProcessorRegistry:
     """
 
     _preprocessors = {
-        "sklearn_model_a": SklearnPreprocessor,  # Corrected registration
-        "sklearn_model_b": SklearnPreprocessor,  # Corrected registration
+        "sklearn": SklearnPreprocessor,
+        "numerical": NumericalPreprocessor,
     }
 
     _postprocessors = {
-        "sklearn_model_a": SklearnPostprocessor,  # Corrected registration
-        "sklearn_model_b": SklearnPostprocessor,  # Corrected registration
+        "sklearn": SklearnPostprocessor,
+        "numerical": NumericalPostprocessor,
     }
 
     @staticmethod
     def get_preprocessor(model_type: str):
         """
-        Get the preprocessor for a specific model type.
-
-        Args:
-            model_type (str): The type of the model (e.g., 'sklearn_model_a').
-
-        Returns:
-            An instance of the preprocessor class.
+        Retrieve the preprocessor for the specified model type.
         """
         if model_type not in ProcessorRegistry._preprocessors:
+            logger.error(f"Preprocessor not found for model type: {model_type}")
             raise ValueError(f"Preprocessor not found for model type: {model_type}")
-        return ProcessorRegistry._preprocessors[model_type]()  # Instantiate without arguments
+        logger.info(f"Preprocessor found for model type: {model_type}")
+        return ProcessorRegistry._preprocessors[model_type]()
 
     @staticmethod
     def get_postprocessor(model_type: str):
         """
-        Get the postprocessor for a specific model type.
-
-        Args:
-            model_type (str): The type of the model (e.g., 'sklearn_model_a').
-
-        Returns:
-            An instance of the postprocessor class.
+        Retrieve the postprocessor for the specified model type.
         """
         if model_type not in ProcessorRegistry._postprocessors:
+            logger.error(f"Postprocessor not found for model type: {model_type}")
             raise ValueError(f"Postprocessor not found for model type: {model_type}")
-        return ProcessorRegistry._postprocessors[model_type]()  # Instantiate without arguments
+        logger.info(f"Postprocessor found for model type: {model_type}")
+        return ProcessorRegistry._postprocessors[model_type]()

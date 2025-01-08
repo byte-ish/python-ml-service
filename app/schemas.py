@@ -1,34 +1,46 @@
-# app/schemas.py
-from pydantic import BaseModel, Field
+"""
+Schemas for request and response validation using Pydantic.
+"""
+from typing import Union, List
+from pydantic import BaseModel, Field, root_validator
 
-# Input schema for Model A
-class ModelAInput(BaseModel):
-    text: str = Field(
+
+class PredictionInput(BaseModel):
+    """
+    Schema for input data required by the prediction endpoint.
+    """
+    input: Union[str, List[List[float]]] = Field(
         ...,
-        description="Input text for Model A.",
-        example="This is a test input for Model A."
+        description="Input data for the model. For text-based models, provide a string. For numerical models, provide a list of lists.",
+        example="I love this product",
     )
 
-# Input schema for Model B
-class ModelBInput(BaseModel):
-    numbers: list[float] = Field(
-        ...,
-        description="Input list of numbers for Model B.",
-        example=[1.0, 2.5, 3.3]
-    )
+    @root_validator
+    def validate_input(cls, values):
+        """
+        Validate input field based on the input type (string for text models or list for numerical models).
+        """
+        input_data = values.get("input")
 
-# Output schema for Model A
-class ModelAOutput(BaseModel):
-    sentiment: str = Field(
-        ...,
-        description="Sentiment analysis result from Model A.",
-        example="Positive"
-    )
+        # Check for valid string input
+        if isinstance(input_data, str):
+            return values
 
-# Output schema for Model B
-class ModelBOutput(BaseModel):
-    sum: float = Field(
+        # Check for valid numerical input
+        if isinstance(input_data, list) and all(isinstance(row, list) and all(isinstance(x, (int, float)) for x in row) for row in input_data):
+            return values
+
+        raise ValueError(
+            "'input' must be a string for text-based models or a list of numerical lists for numerical models."
+        )
+
+
+class PredictionResponse(BaseModel):
+    """
+    Schema for the prediction response data.
+    """
+    prediction: Union[str, List[float]] = Field(
         ...,
-        description="Sum of input numbers calculated by Model B.",
-        example=6.8
+        description="The processed prediction result from the ML model.",
+        example="Processed: positive sentiment for text models or [6.0, 15.0] for numerical models.",
     )

@@ -63,15 +63,13 @@ async def startup_event():
     """
     Actions to perform during the startup of the application.
     """
-    logger.info("Application startup: Registering ML models.")
+    logger.info("Application startup: Loading model configurations.")
 
-    # Register ML models
     try:
-        ModelRegistry.register_model("model_a", "app/models/model_a.pkl")
-        ModelRegistry.register_model("model_b", "app/models/model_b.pkl")
+        ModelRegistry.load_config("app/config/models_config.json")
         logger.info("All models registered successfully.")
     except Exception as e:
-        logger.error(f"Error during model registration: {str(e)}")
+        logger.error(f"Error during model registration: {e}")
 
 # Include routers for various functionalities
 app.include_router(health_router)

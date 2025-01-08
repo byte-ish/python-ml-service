@@ -1,34 +1,46 @@
-# app/routes/prediction.py
-from fastapi import APIRouter, HTTPException, Request, Depends
-from app.schemas import ModelAInput, ModelAOutput, ModelBInput, ModelBOutput
+"""
+Routes for prediction requests.
+"""
+from fastapi import APIRouter, HTTPException, Request
+from app.schemas import PredictionInput, PredictionResponse
 from app.services.prediction_service import predict
+from app.models.model_registry import ModelRegistry
 from app.logger import get_logger
-from app.utils.jwt import verify_jwt_token
 
 router = APIRouter()
 logger = get_logger(__name__)
 
-@router.post("/predict/model_a", response_model=ModelAOutput)
-def predict_model_a(data: ModelAInput, request: Request):
+
+@router.post(
+    "/predict/{model_id}",
+    tags=["Prediction"],
+    response_model=PredictionResponse,
+    summary="Prediction Endpoint",
+    description="Endpoint for making predictions using different models.",
+)
+async def get_prediction(model_id: str, data: PredictionInput, request: Request):
+    """
+    Handle prediction requests based on the specified model_id.
+
+    Args:
+        model_id (str): Identifier of the model to use.
+        data (PredictionInput): Input data for the prediction.
+        request (Request): The incoming request object.
+
+    Returns:
+        dict: The prediction result.
+    """
     request_id = request.state.request_id
-    logger.info(f"Prediction request for Model A. Request ID: {request_id}")
+    logger.info(f"Prediction request received. Request ID: {request_id} | Model ID: {model_id}")
+
+    if not ModelRegistry.is_registered(model_id):
+        logger.error(f"Model '{model_id}' is not registered. Request ID: {request_id}")
+        raise HTTPException(status_code=400, detail=f"Model '{model_id}' is not registered.")
 
     try:
-        result = predict(data.dict(), model_id="model_a", model_type="sklearn_model_a", request_id=request_id)
-        return {"sentiment": result}
+        result = predict(input_data=data.dict(), model_id=model_id, request_id=request_id)
+        logger.info(f"Prediction successful. Request ID: {request_id}")
+        return {"prediction": result}
     except Exception as e:
-        logger.error(f"Prediction failed: {str(e)}")
-        raise HTTPException(status_code=400, detail=f"Prediction failed: {str(e)}")
-
-
-@router.post("/predict/model_b", response_model=ModelBOutput)
-def predict_model_b(data: ModelBInput, request: Request):
-    request_id = request.state.request_id
-    logger.info(f"Prediction request for Model B. Request ID: {request_id}")
-
-    try:
-        result = predict(data.dict(), model_id="model_b", model_type="sklearn_model_b", request_id=request_id)
-        return {"sum": result}
-    except Exception as e:
-        logger.error(f"Prediction failed: {str(e)}")
-        raise HTTPException(status_code=400, detail=f"Prediction failed: {str(e)}")
+        logger.error(f"Prediction failed. Request ID: {request_id} | Error: {e}")
+        raise HTTPException(status_code=500, detail=f"Prediction failed: {e}")

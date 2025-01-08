@@ -1,0 +1,14 @@
+{
+    "models": [
+        {
+            "id": "model_a",
+            "path": "app/models/model_a.pkl",
+            "type": "sklearn"
+        },
+        {
+            "id": "model_b",
+            "path": "app/models/model_b.pkl",
+            "type": "numerical"
+        }
+    ]
+}
