@@ -5,7 +5,7 @@ Schemas for request and response validation for the prediction endpoint.
 from typing import Union, List
 from pydantic import BaseModel, Field, root_validator  # Ensure Pydantic is installed
 
-
+# pylint: disable=no-name-in-module
 class PredictionInput(BaseModel):  # pylint: disable=too-few-public-methods
     """
     Schema for input data required by the prediction endpoint.

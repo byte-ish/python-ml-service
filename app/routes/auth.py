@@ -2,7 +2,7 @@
 Routes for authentication.
 Provides functionality to authenticate with Jira and issue JWT tokens.
 """
-
+# pylint: disable=no-name-in-module
 import requests
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel  # Ensure Pydantic is correctly imported and installed

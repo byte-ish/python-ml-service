@@ -1,7 +1,7 @@
 """
 Common schemas for shared data structures.
 """
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field # pylint: disable=no-name-in-module
 
 
 class HealthCheckResponse(BaseModel):
