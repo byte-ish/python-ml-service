@@ -1,6 +1,7 @@
 """
 Routes for prediction requests.
 """
+
 from fastapi import APIRouter, HTTPException, Request
 from app.schemas.prediction_schema import PredictionInput, PredictionResponse
 from app.services.prediction_service import predict
@@ -32,17 +33,17 @@ async def get_prediction(model_id: str, data: PredictionInput, request: Request)
         dict: The prediction result.
     """
     PREDICTION_HIT_COUNTER.inc()  # Increment the custom metric
-    request_id = request.state.request_id
-    logger.info(f"Prediction request received. Request ID: {request_id} | Model ID: {model_id}")
+    request_id = getattr(request.state, "request_id", "N/A")
+    logger.info("Prediction request received. Request ID: %s | Model ID: %s", request_id, model_id)
 
     if not ModelRegistry.is_registered(model_id):
-        logger.error(f"Model '{model_id}' is not registered. Request ID: {request_id}")
+        logger.error("Model '%s' is not registered. Request ID: %s", model_id, request_id)
         raise HTTPException(status_code=400, detail=f"Model '{model_id}' is not registered.")
 
     try:
         result = predict(input_data=data.dict(), model_id=model_id, request_id=request_id)
-        logger.info(f"Prediction successful. Request ID: {request_id}")
+        logger.info("Prediction successful. Request ID: %s", request_id)
         return {"prediction": result}
     except Exception as e:
-        logger.error(f"Prediction failed. Request ID: {request_id} | Error: {e}")
-        raise HTTPException(status_code=500, detail=f"Prediction failed: {e}")
+        logger.error("Prediction failed. Request ID: %s | Error: %s", request_id, str(e))
+        raise HTTPException(status_code=500, detail=f"Prediction failed: {e}") from e

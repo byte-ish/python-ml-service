@@ -118,3 +118,4 @@
 {"timestamp": "2025-01-08T19:25:33", "level": "INFO", "logger": "app.models.model_registry", "message": "SUCCESS: Model configurations loaded successfully.", "request_id": "N/A"}
 {"timestamp": "2025-01-08T19:25:33", "level": "INFO", "logger": "app.main", "message": "All models registered successfully.", "request_id": "N/A"}
 {"timestamp": "2025-01-08T19:25:44", "level": "INFO", "logger": "app.main", "message": "Request ID b3c3d7b8-aff3-4b80-b3d2-bc2d7500df30 assigned to incoming request.", "request_id": "b3c3d7b8-aff3-4b80-b3d2-bc2d7500df30"}
+{"timestamp": "2025-01-08T19:25:59", "level": "INFO", "logger": "app.main", "message": "Request ID c8c988a4-fe71-443b-a5fb-960b6e9fbdc3 assigned to incoming request.", "request_id": "c8c988a4-fe71-443b-a5fb-960b6e9fbdc3"}

@@ -9,12 +9,13 @@ from dotenv import load_dotenv
 ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
 
 # Load the appropriate .env file based on the environment
-dotenv_file = f".env.{ENVIRONMENT}"
-if not load_dotenv(dotenv_file):
+DOTENV_FILE = f".env.{ENVIRONMENT}"
+if not load_dotenv(DOTENV_FILE):
     # Fall back to a default .env file if environment-specific file is not found
     load_dotenv(".env")
 
-class Config:
+
+class Config: # pylint: disable=too-few-public-methods
     """
     Configuration settings for the application.
     """
@@ -34,7 +35,7 @@ class Config:
     # JWT Configuration
     JWT_SECRET_KEY: str = os.getenv("JWT_SECRET_KEY", "mysecretjwtkey")
     JWT_ALGORITHM: str = os.getenv("JWT_ALGORITHM", "HS256")
-    JWT_EXPIRATION_MINUTES: int = int(os.getenv("JWT_EXPIRATION_MINUTES", 30))
+    JWT_EXPIRATION_MINUTES: int = int(os.getenv("JWT_EXPIRATION_MINUTES", "30"))
 
     @classmethod
     def display_config(cls):

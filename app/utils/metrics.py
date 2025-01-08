@@ -1,5 +1,5 @@
 """
-Prometheus Metrics for Monitoring the ML Microservice
+Prometheus Metrics for Monitoring the ML Microservice.
 """
 
 from prometheus_client import Counter, Histogram

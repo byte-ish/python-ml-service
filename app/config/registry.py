@@ -31,9 +31,9 @@ class ProcessorRegistry:
         Retrieve the preprocessor for the specified model type.
         """
         if model_type not in ProcessorRegistry._preprocessors:
-            logger.error(f"Preprocessor not found for model type: {model_type}")
+            logger.error("Preprocessor not found for model type: %s", model_type)
             raise ValueError(f"Preprocessor not found for model type: {model_type}")
-        logger.info(f"Preprocessor found for model type: {model_type}")
+        logger.info("Preprocessor found for model type: %s", model_type)
         return ProcessorRegistry._preprocessors[model_type]()
 
     @staticmethod
@@ -42,7 +42,7 @@ class ProcessorRegistry:
         Retrieve the postprocessor for the specified model type.
         """
         if model_type not in ProcessorRegistry._postprocessors:
-            logger.error(f"Postprocessor not found for model type: {model_type}")
+            logger.error("Postprocessor not found for model type: %s", model_type)
             raise ValueError(f"Postprocessor not found for model type: {model_type}")
-        logger.info(f"Postprocessor found for model type: {model_type}")
+        logger.info("Postprocessor found for model type: %s", model_type)
         return ProcessorRegistry._postprocessors[model_type]()

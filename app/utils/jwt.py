@@ -1,12 +1,12 @@
 """
 Utility functions for creating and verifying JWT tokens.
 """
-
 from datetime import datetime, timedelta
 from jose import jwt
 from app.config.config import Config
 
-def create_jwt_token(data: dict):
+
+def create_jwt_token(data: dict) -> str:
     """
     Generate a JWT token.
 
@@ -18,10 +18,10 @@ def create_jwt_token(data: dict):
     """
     expiration = datetime.utcnow() + timedelta(minutes=Config.JWT_EXPIRATION_MINUTES)
     payload = {**data, "exp": expiration}
-    token = jwt.encode(payload, Config.JWT_SECRET_KEY, algorithm=Config.JWT_ALGORITHM)
-    return token
+    return jwt.encode(payload, Config.JWT_SECRET_KEY, algorithm=Config.JWT_ALGORITHM)
 
-def verify_jwt_token(token: str):
+
+def verify_jwt_token(token: str) -> dict:
     """
     Validate a JWT token and decode its payload.
 
@@ -34,5 +34,4 @@ def verify_jwt_token(token: str):
     Raises:
         jwt.JWTError: If the token is invalid or expired.
     """
-    payload = jwt.decode(token, Config.JWT_SECRET_KEY, algorithms=[Config.JWT_ALGORITHM])
-    return payload
+    return jwt.decode(token, Config.JWT_SECRET_KEY, algorithms=[Config.JWT_ALGORITHM])

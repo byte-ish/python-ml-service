@@ -2,9 +2,9 @@
 Generates and saves a sample mock model for testing.
 """
 
+import logging
 import pickle
 from app.models.mock_string_model import MockStringModel
-import logging
 
 logger = logging.getLogger(__name__)
 
@@ -17,6 +17,7 @@ def generate_mock_model():
     with open("app/models/default_model.pkl", "wb") as f:
         pickle.dump(mock_model, f)
     logger.info("Mock model saved successfully at 'app/models/default_model.pkl'")
+
 
 if __name__ == "__main__":
     generate_mock_model()

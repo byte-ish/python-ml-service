@@ -24,5 +24,3 @@ fastapi[testing]==0.100.0 # Testing utilities for FastAPI applications
 # Linting and Formatting (Optional for Development)
 flake8==6.1.0            # Linter for enforcing Python style
 black==23.9.1            # Code formatter for consistent style
-
-aioredis==2.0.1

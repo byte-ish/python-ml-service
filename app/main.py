@@ -3,10 +3,10 @@ Main module for the ML Microservice application.
 Initializes the FastAPI application, includes routes, and sets up middleware.
 """
 
-from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
 import traceback
 import uuid
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 from prometheus_fastapi_instrumentator import Instrumentator
 from app.utils.logger import get_logger, context_filter
 from app.routes.healthcheck import router as health_router
@@ -29,6 +29,7 @@ logger = get_logger(__name__)
 instrumentator = Instrumentator()
 instrumentator.instrument(app).expose(app)
 
+
 @app.middleware("http")
 async def add_request_id_middleware(request: Request, call_next):
     """
@@ -37,11 +38,12 @@ async def add_request_id_middleware(request: Request, call_next):
     request_id = str(uuid.uuid4())
     request.state.request_id = request_id
     context_filter.set_request_id(request_id)  # Set `request_id` in the logger context
-    logger.info(f"Request ID {request_id} assigned to incoming request.")
+    logger.info("Request ID %s assigned to incoming request.", request_id)  # Lazy formatting
     response = await call_next(request)
     response.headers["X-Request-ID"] = request_id
     context_filter.set_request_id(None)  # Clear the context after the request
     return response
+
 
 @app.exception_handler(Exception)
 async def general_exception_handler(request: Request, exc: Exception):
@@ -49,8 +51,10 @@ async def general_exception_handler(request: Request, exc: Exception):
     Handles all unexpected exceptions and logs the stack trace.
     """
     logger.error(
-        f"Unexpected error: {str(exc)} | Request ID: {request.state.request_id}\n"
-        f"Traceback: {traceback.format_exc()}"
+        "Unexpected error: %s | Request ID: %s\nTraceback: %s",
+        str(exc),
+        request.state.request_id,
+        traceback.format_exc(),
     )
     return JSONResponse(
         status_code=500,
@@ -60,18 +64,20 @@ async def general_exception_handler(request: Request, exc: Exception):
         },
     )
 
+
 @app.on_event("startup")
 async def startup_event():
     """
     Actions to perform during the startup of the application.
     """
     logger.info("Application startup: Loading model configurations.")
-
     try:
         ModelRegistry.load_config("app/config/models_config.json")
-        logger.info("All models registered successfully.")
-    except Exception as e:
-        logger.error(f"Error during model registration: {e}")
+        total_models = len(ModelRegistry.list_registered_models())
+        logger.info("All models registered successfully. Total models: %d", total_models)
+    except RuntimeError as e:
+        logger.error("Error during model registration: %s", e)
+
 
 # Include routers for various functionalities
 app.include_router(health_router)
@@ -81,5 +87,5 @@ app.include_router(auth_router, prefix="/auth")
 if __name__ == "__main__":
     import uvicorn
 
-    logger.info(f"Application configuration: {Config.display_config()}")
+    logger.info("Application configuration: %s", Config.display_config())  # Lazy formatting
     uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)

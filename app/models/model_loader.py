@@ -1,4 +1,7 @@
-# app/models/model_loader.py
+"""
+Module to load models dynamically using the ModelRegistry.
+"""
+
 from app.models.model_registry import ModelRegistry
 
 def load_model(model_id: str):
