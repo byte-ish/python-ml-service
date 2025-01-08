@@ -13,8 +13,11 @@ class CustomJSONFormatter(logging.Formatter):
             "level": record.levelname,
             "logger": record.name,
             "message": record.getMessage(),
-            "request_id": getattr(record, "request_id", None),
+            "request_id": getattr(record, "request_id", None),  # Will remain `None` if not set
         }
+        # Include any `extra` fields passed explicitly
+        if hasattr(record, "extra"):
+            log_record.update(record.extra)
         return json.dumps(log_record)
 
 class ContextFilter(logging.Filter):
@@ -35,7 +38,7 @@ class ContextFilter(logging.Filter):
         """
         Adds the `request_id` to the log record.
         """
-        record.request_id = self.request_id
+        record.request_id = self.request_id or "N/A"  # Default to "N/A" if `request_id` is unset
         return True
 
 # Create a global instance of the context filter

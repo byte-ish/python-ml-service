@@ -1,22 +1,8 @@
-from fastapi import APIRouter, Request, Depends, HTTPException
-from fastapi.security.api_key import APIKeyHeader
-from app.logger import get_logger
-from app.config.config import Config
+from fastapi import APIRouter, Request
+from app.utils.logger import get_logger
 
 router = APIRouter()
 logger = get_logger(__name__)
-
-# API key dependency
-api_key_header = APIKeyHeader(name="X-API-KEY", auto_error=False)
-
-def validate_api_key(api_key: str = Depends(api_key_header)):
-    """
-    Validate the provided API key.
-    """
-    if api_key != Config.API_KEY:
-        logger.warning("Unauthorized access attempt with invalid API key.")
-        raise HTTPException(status_code=401, detail="Invalid API key.")
-    return api_key
 
 @router.get(
     "/health",
@@ -33,7 +19,6 @@ def validate_api_key(api_key: str = Depends(api_key_header)):
             },
         },
     },
-    dependencies=[Depends(validate_api_key)],
 )
 def health_check(request: Request):
     """
@@ -41,5 +26,5 @@ def health_check(request: Request):
 
     Logs the request and returns the service health status.
     """
-    logger.info("Health check endpoint called", extra={"request_id": request.state.request_id})
+    logger.info("Health check endpoint called", extra={"request_id": getattr(request.state, 'request_id', None)})
     return {"status": "ok", "message": "Service is running"}

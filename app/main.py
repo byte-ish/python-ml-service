@@ -3,12 +3,12 @@ Main module for the ML Microservice application.
 Initializes the FastAPI application, includes routes, and sets up middleware.
 """
 
-from fastapi import FastAPI, Request, HTTPException
+from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 import traceback
 import uuid
 from prometheus_fastapi_instrumentator import Instrumentator
-from app.logger import get_logger, context_filter
+from app.utils.logger import get_logger, context_filter
 from app.routes.healthcheck import router as health_router
 from app.routes.prediction import router as prediction_router
 from app.routes.auth import router as auth_router

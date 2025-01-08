@@ -5,7 +5,7 @@ from app.preprocessors.sklearn_preprocessor import SklearnPreprocessor
 from app.postprocessors.sklearn_postprocessor import SklearnPostprocessor
 from app.preprocessors.numerical_preprocessor import NumericalPreprocessor
 from app.postprocessors.numerical_postprocessor import NumericalPostprocessor
-from app.logger import get_logger
+from app.utils.logger import get_logger
 
 logger = get_logger(__name__)
 

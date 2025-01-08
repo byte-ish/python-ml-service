@@ -2,10 +2,10 @@
 Routes for prediction requests.
 """
 from fastapi import APIRouter, HTTPException, Request
-from app.schemas import PredictionInput, PredictionResponse
+from app.schemas.prediction_schema import PredictionInput, PredictionResponse
 from app.services.prediction_service import predict
 from app.models.model_registry import ModelRegistry
-from app.logger import get_logger
+from app.utils.logger import get_logger
 from app.utils.metrics import PREDICTION_HIT_COUNTER
 
 router = APIRouter()

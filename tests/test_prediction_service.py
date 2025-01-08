@@ -1,5 +1,5 @@
 from app.services.prediction_service import predict
-from app.schemas import PredictionInput
+from app.schemas.schemas import PredictionInput
 
 def test_prediction_logic():
     sample_input = PredictionInput(features=[1.2, 3.4, 5.6, 7.8])

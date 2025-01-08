@@ -4,7 +4,7 @@ Service for handling prediction requests.
 import time
 from app.models.model_registry import ModelRegistry
 from app.config.registry import ProcessorRegistry
-from app.logger import get_logger
+from app.utils.logger import get_logger
 from app.utils.metrics import PREDICTION_RESPONSE_TIME  # Import from metrics.py
 
 logger = get_logger(__name__)

@@ -48,29 +48,31 @@ Each model type requires a preprocessor to handle input transformations. If the 
 2. Extend `BasePreprocessor` and implement the `preprocess` method.
 
 **Example: `custom_preprocessor.py`**
+
 ```python
 from app.preprocessors.base_preprocessor import BasePreprocessor
-from app.logger import get_logger
+from app.utils.logger import get_logger
 
 logger = get_logger(__name__)
 
-class CustomPreprocessor(BasePreprocessor):
-    def preprocess(self, input_data):
-        logger.info(f"Preprocessing input data: {input_data}")
 
-        # Example preprocessing for custom model
-        text = input_data.get("text")
-        if not text:
-            raise ValueError("The 'text' field is missing or None.")
-        
-        # Perform masking or transformations
-        masked_text = self.mask_input(text)
-        return {"features": [masked_text]}
-    
-    def mask_input(self, text):
-        # Example masking function
-        import re
-        return re.sub(r"\\d", "*", text)
+class CustomPreprocessor(BasePreprocessor):
+   def preprocess(self, input_data):
+      logger.info(f"Preprocessing input data: {input_data}")
+
+      # Example preprocessing for custom model
+      text = input_data.get("text")
+      if not text:
+         raise ValueError("The 'text' field is missing or None.")
+
+      # Perform masking or transformations
+      masked_text = self.mask_input(text)
+      return {"features": [masked_text]}
+
+   def mask_input(self, text):
+      # Example masking function
+      import re
+      return re.sub(r"\\d", "*", text)
 ```
 
 **Why?**
@@ -86,20 +88,22 @@ Each model type requires a postprocessor to handle output transformations. If th
 2. Extend `BasePostprocessor` and implement the `postprocess` method.
 
 **Example: `custom_postprocessor.py`**
+
 ```python
 from app.postprocessors.base_postprocessor import BasePostprocessor
-from app.logger import get_logger
+from app.utils.logger import get_logger
 
 logger = get_logger(__name__)
 
+
 class CustomPostprocessor(BasePostprocessor):
-    def postprocess(self, raw_prediction):
-        logger.info(f"Postprocessing raw prediction: {raw_prediction}")
-        
-        # Example transformation
-        if not isinstance(raw_prediction, list):
-            raise ValueError("Raw prediction must be a list.")
-        return f"Processed custom result: {raw_prediction}"
+   def postprocess(self, raw_prediction):
+      logger.info(f"Postprocessing raw prediction: {raw_prediction}")
+
+      # Example transformation
+      if not isinstance(raw_prediction, list):
+         raise ValueError("Raw prediction must be a list.")
+      return f"Processed custom result: {raw_prediction}"
 ```
 
 **Why?**

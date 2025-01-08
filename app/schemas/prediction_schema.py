@@ -1,5 +1,5 @@
 """
-Schemas for request and response validation using Pydantic.
+Schemas for request and response validation for the prediction endpoint.
 """
 from typing import Union, List
 from pydantic import BaseModel, Field, root_validator
