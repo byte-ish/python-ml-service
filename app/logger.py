@@ -17,6 +17,29 @@ class CustomJSONFormatter(logging.Formatter):
         }
         return json.dumps(log_record)
 
+class ContextFilter(logging.Filter):
+    """
+    A logging filter that adds contextual information like `request_id` to log records.
+    """
+    def __init__(self):
+        super().__init__()
+        self.request_id = None
+
+    def set_request_id(self, request_id):
+        """
+        Sets the `request_id` for the current context.
+        """
+        self.request_id = request_id
+
+    def filter(self, record):
+        """
+        Adds the `request_id` to the log record.
+        """
+        record.request_id = self.request_id
+        return True
+
+# Create a global instance of the context filter
+context_filter = ContextFilter()
 
 def get_logger(name):
     """
@@ -50,5 +73,8 @@ def get_logger(name):
     # Integrate with FastAPI logger
     fastapi_logger.handlers = logger.handlers
     fastapi_logger.setLevel(Config.LOG_LEVEL)
+
+    # Add context filter to include `request_id`
+    logger.addFilter(context_filter)
 
     return logger

@@ -6,6 +6,7 @@ from app.schemas import PredictionInput, PredictionResponse
 from app.services.prediction_service import predict
 from app.models.model_registry import ModelRegistry
 from app.logger import get_logger
+from app.utils.metrics import PREDICTION_HIT_COUNTER
 
 router = APIRouter()
 logger = get_logger(__name__)
@@ -30,6 +31,7 @@ async def get_prediction(model_id: str, data: PredictionInput, request: Request)
     Returns:
         dict: The prediction result.
     """
+    PREDICTION_HIT_COUNTER.inc()  # Increment the custom metric
     request_id = request.state.request_id
     logger.info(f"Prediction request received. Request ID: {request_id} | Model ID: {model_id}")
 

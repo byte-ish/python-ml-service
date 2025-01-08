@@ -49,4 +49,4 @@ This document provides details about the available API endpoints in the microser
 
 ---
 
-For additional details, refer to the [Development and Deployment Guide](./Deployment_Guide.md).
+For additional details, refer to the [Development and Deployment Guide](Deployment_Guide.md).

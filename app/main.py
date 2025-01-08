@@ -8,7 +8,7 @@ from fastapi.responses import JSONResponse
 import traceback
 import uuid
 from prometheus_fastapi_instrumentator import Instrumentator
-from app.logger import get_logger
+from app.logger import get_logger, context_filter
 from app.routes.healthcheck import router as health_router
 from app.routes.prediction import router as prediction_router
 from app.routes.auth import router as auth_router
@@ -32,13 +32,15 @@ instrumentator.instrument(app).expose(app)
 @app.middleware("http")
 async def add_request_id_middleware(request: Request, call_next):
     """
-    Middleware to add a unique request ID to each incoming request.
+    Middleware to add a unique request ID to each incoming request and log it.
     """
     request_id = str(uuid.uuid4())
     request.state.request_id = request_id
-    logger.info(f"Request ID {request_id} assigned to incoming request.", extra={"request_id": request_id})
+    context_filter.set_request_id(request_id)  # Set `request_id` in the logger context
+    logger.info(f"Request ID {request_id} assigned to incoming request.")
     response = await call_next(request)
     response.headers["X-Request-ID"] = request_id
+    context_filter.set_request_id(None)  # Clear the context after the request
     return response
 
 @app.exception_handler(Exception)
