@@ -65,12 +65,15 @@ async def general_exception_handler(request: Request, exc: Exception):
     )
 
 
+# In app/main.py
 @app.on_event("startup")
 async def startup_event():
     """
     Actions to perform during the startup of the application.
     """
     logger.info("Application startup: Loading model configurations.")
+    logger.info("Authentication enabled: %s", Config.ENABLE_AUTHENTICATION)
+
     try:
         ModelRegistry.load_config("app/config/models_config.json")
         total_models = len(ModelRegistry.list_registered_models())

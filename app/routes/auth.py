@@ -1,12 +1,9 @@
-"""
-Routes for authentication.
-Provides functionality to authenticate with Jira and issue JWT tokens.
-"""
-# pylint: disable=no-name-in-module
+# In app/routes/auth.py
+from fastapi import APIRouter, HTTPException, Depends
+from app.utils.jwt import create_jwt_token
+from app.config.config import Config
+from pydantic import BaseModel
 import requests
-from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel  # Ensure Pydantic is correctly imported and installed
-from app.utils.jwt import create_jwt_token  # Importing the function to generate JWT
 
 router = APIRouter()
 
@@ -43,19 +40,26 @@ def jira_login(credentials: JiraLoginRequest):
     Raises:
         HTTPException: If Jira authentication fails.
     """
+    if not Config.ENABLE_AUTHENTICATION:
+        # Authentication is disabled
+        return {
+            "access_token": "authentication-disabled",
+            "message": "Authentication is disabled in the configuration.",
+        }
+
     jira_url = f"{JIRA_BASE_URL}/rest/api/3/myself"
 
     try:
         # Making an API request to Jira to authenticate the user
         response = requests.get(
             jira_url,
-            auth=(credentials.email, credentials.api_token),  # Jira basic authentication
-            timeout=10  # Adding a timeout to prevent indefinite hanging
+            auth=(credentials.email, credentials.api_token),
+            timeout=10
         )
 
         if response.status_code == 200:
             # Successful authentication, generate JWT token
-            jwt_token = create_jwt_token({"sub": credentials.email})  # Encode email as subject
+            jwt_token = create_jwt_token({"sub": credentials.email})
             return {"access_token": jwt_token, "token_type": "Bearer"}
 
         raise HTTPException(status_code=401, detail="Invalid Jira credentials.")
