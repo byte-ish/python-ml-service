@@ -157,5 +157,4 @@ The main application directory containing all core components of the microservic
 
 ---
 
-Move to the next section for a step-by-step guide on [executing the project](execution_guide.md).
-"""
+Move to the next section for a step-by-step guide on [executing the project](docs/execution_guide.md).
