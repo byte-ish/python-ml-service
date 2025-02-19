@@ -24,3 +24,10 @@ fastapi[testing]==0.100.0 # Testing utilities for FastAPI applications
 # Linting and Formatting (Optional for Development)
 flake8==6.1.0            # Linter for enforcing Python style
 black==23.9.1            # Code formatter for consistent style
+
+# Requests
+requests==2.31.0
+
+# JWT Authentication (Fixed)
+python-jose[cryptography]==3.3.0  # Recommended over `jose`
+pyjwt==2.8.0                      # Alternative JWT library, better maintained

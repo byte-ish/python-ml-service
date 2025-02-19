@@ -35,6 +35,6 @@ def create_project_structure(base_path, structure):
                     file.write(content)
 
 # Create the project structure
-create_project_structure(".", project_structure)
+create_project_structure("..", project_structure)
 
 print("Project structure created successfully.")

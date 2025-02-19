@@ -1,6 +1,7 @@
 """
 Service for handling prediction requests.
 """
+
 from app.models.model_registry import ModelRegistry
 from app.config.registry import ProcessorRegistry
 from app.logger import get_logger
@@ -26,7 +27,7 @@ def predict(input_data: dict, model_id: str, request_id: str):
     try:
         model = ModelRegistry.load_model(model_id)
         model_type = ModelRegistry.get_model_type(model_id)
-        logger.info(f"Model '{model_id}' successfully loaded with type '{model_type}'.")
+        logger.info(f"Model '{model_id}' loaded with type '{model_type}'.")
     except Exception as e:
         logger.error(f"Error loading model '{model_id}': {e}")
         raise ValueError(f"Error loading model '{model_id}': {e}")

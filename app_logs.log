@@ -1642,3 +1642,67 @@
 {"timestamp": "2025-01-08T12:51:55", "level": "INFO", "logger": "app.postprocessors.numerical_postprocessor", "message": "Formatted numerical result: Processed numerical result: [6.0, 15.0]", "request_id": null}
 {"timestamp": "2025-01-08T12:51:55", "level": "INFO", "logger": "app.services.prediction_service", "message": "Prediction postprocessed successfully: Processed numerical result: [6.0, 15.0]", "request_id": null}
 {"timestamp": "2025-01-08T12:51:55", "level": "INFO", "logger": "app.routes.prediction", "message": "Prediction successful. Request ID: 90df0602-a119-478c-8195-a0dc2f5093cb", "request_id": null}
+{"timestamp": "2025-02-19T19:15:30", "level": "INFO", "logger": "app.main", "message": "Application startup: Loading model configurations.", "request_id": null}
+{"timestamp": "2025-02-19T19:15:30", "level": "INFO", "logger": "app.models.model_registry", "message": "Model registered: model_a at app/models/model_a.pkl with type 'sklearn'.", "request_id": null}
+{"timestamp": "2025-02-19T19:15:30", "level": "INFO", "logger": "app.models.model_registry", "message": "Model registered: model_b at app/models/model_b.pkl with type 'numerical'.", "request_id": null}
+{"timestamp": "2025-02-19T19:15:30", "level": "INFO", "logger": "app.models.model_registry", "message": "Model configurations loaded successfully.", "request_id": null}
+{"timestamp": "2025-02-19T19:15:30", "level": "INFO", "logger": "app.main", "message": "All models registered successfully.", "request_id": null}
+{"timestamp": "2025-02-19T19:15:32", "level": "INFO", "logger": "app.main", "message": "Request ID c8e47b3e-1f2f-4cfc-aa42-f75c360b1c0b assigned to incoming request.", "request_id": "c8e47b3e-1f2f-4cfc-aa42-f75c360b1c0b"}
+{"timestamp": "2025-02-19T19:15:32", "level": "INFO", "logger": "app.main", "message": "Request ID 383c7a72-44d5-4185-94bb-f00e0e45024c assigned to incoming request.", "request_id": "383c7a72-44d5-4185-94bb-f00e0e45024c"}
+{"timestamp": "2025-02-19T19:15:36", "level": "INFO", "logger": "app.main", "message": "Request ID 34ad2189-af8b-49d6-9c8f-cbe67a0d3806 assigned to incoming request.", "request_id": "34ad2189-af8b-49d6-9c8f-cbe67a0d3806"}
+{"timestamp": "2025-02-19T19:15:38", "level": "INFO", "logger": "app.main", "message": "Request ID 998138d8-2337-4a7b-833c-ec5d73e6ac20 assigned to incoming request.", "request_id": "998138d8-2337-4a7b-833c-ec5d73e6ac20"}
+{"timestamp": "2025-02-19T19:15:43", "level": "INFO", "logger": "app.main", "message": "Request ID d14ea752-8bb3-41e0-aa25-2fc0b43bb4bf assigned to incoming request.", "request_id": "d14ea752-8bb3-41e0-aa25-2fc0b43bb4bf"}
+{"timestamp": "2025-02-19T19:15:44", "level": "INFO", "logger": "app.main", "message": "Request ID 72c5dad7-eebc-4c7b-b3b2-468d86d9e157 assigned to incoming request.", "request_id": "72c5dad7-eebc-4c7b-b3b2-468d86d9e157"}
+{"timestamp": "2025-02-19T19:16:01", "level": "INFO", "logger": "app.main", "message": "Request ID e6effded-a3ea-48e2-ba41-4351f1692e68 assigned to incoming request.", "request_id": "e6effded-a3ea-48e2-ba41-4351f1692e68"}
+{"timestamp": "2025-02-19T19:16:01", "level": "INFO", "logger": "app.routes.async_prediction", "message": "Received async request 925faa48-c217-42b2-ad30-78c4f13447ac for model model_a", "request_id": null}
+{"timestamp": "2025-02-19T19:16:01", "level": "INFO", "logger": "app.routes.async_prediction", "message": "Processing async request 925faa48-c217-42b2-ad30-78c4f13447ac for model model_a", "request_id": null}
+{"timestamp": "2025-02-19T19:16:01", "level": "INFO", "logger": "app.services.prediction_service", "message": "Starting prediction. Request ID: 925faa48-c217-42b2-ad30-78c4f13447ac | Model ID: model_a", "request_id": null}
+{"timestamp": "2025-02-19T19:16:15", "level": "INFO", "logger": "app.models.model_registry", "message": "Model 'model_a' successfully loaded from app/models/model_a.pkl.", "request_id": null}
+{"timestamp": "2025-02-19T19:16:15", "level": "INFO", "logger": "app.services.prediction_service", "message": "Model 'model_a' loaded with type 'sklearn'.", "request_id": null}
+{"timestamp": "2025-02-19T19:16:15", "level": "INFO", "logger": "app.config.registry", "message": "Preprocessor found for model type: sklearn", "request_id": null}
+{"timestamp": "2025-02-19T19:16:15", "level": "INFO", "logger": "app.services.prediction_service", "message": "Input data preprocessed successfully: {'features': ['i love this product']}", "request_id": null}
+{"timestamp": "2025-02-19T19:16:15", "level": "INFO", "logger": "app.services.prediction_service", "message": "Model inference completed. Raw prediction: ['positive']", "request_id": null}
+{"timestamp": "2025-02-19T19:16:15", "level": "INFO", "logger": "app.config.registry", "message": "Postprocessor found for model type: sklearn", "request_id": null}
+{"timestamp": "2025-02-19T19:16:15", "level": "INFO", "logger": "app.services.prediction_service", "message": "Prediction postprocessed successfully: Processed: positive", "request_id": null}
+{"timestamp": "2025-02-19T19:26:02", "level": "INFO", "logger": "app.main", "message": "Application startup: Loading model configurations.", "request_id": null}
+{"timestamp": "2025-02-19T19:26:02", "level": "INFO", "logger": "app.models.model_registry", "message": "Model registered: model_a at app/models/model_a.pkl with type 'sklearn'.", "request_id": null}
+{"timestamp": "2025-02-19T19:26:02", "level": "INFO", "logger": "app.models.model_registry", "message": "Model registered: model_b at app/models/model_b.pkl with type 'numerical'.", "request_id": null}
+{"timestamp": "2025-02-19T19:26:02", "level": "INFO", "logger": "app.models.model_registry", "message": "Model configurations loaded successfully.", "request_id": null}
+{"timestamp": "2025-02-19T19:26:02", "level": "INFO", "logger": "app.main", "message": "All models registered successfully.", "request_id": null}
+{"timestamp": "2025-02-19T19:26:05", "level": "INFO", "logger": "app.main", "message": "Request ID: 7e288ae3-ca31-4e07-94ce-894ae6dd79aa | Path: /docs | Time Taken: 0.0004 sec", "request_id": "7e288ae3-ca31-4e07-94ce-894ae6dd79aa"}
+{"timestamp": "2025-02-19T19:26:05", "level": "INFO", "logger": "app.main", "message": "Request ID: 4929cfc2-6b87-40f3-95c8-071cf05f1990 | Path: /openapi.json | Time Taken: 0.0056 sec", "request_id": "4929cfc2-6b87-40f3-95c8-071cf05f1990"}
+{"timestamp": "2025-02-19T19:26:15", "level": "INFO", "logger": "app.routes.async_prediction", "message": "Received async request 52a7307f-0983-4617-969e-506408d1040d for model model_a", "request_id": null}
+{"timestamp": "2025-02-19T19:26:15", "level": "INFO", "logger": "app.routes.async_prediction", "message": "Processing async request 52a7307f-0983-4617-969e-506408d1040d for model model_a", "request_id": null}
+{"timestamp": "2025-02-19T19:26:15", "level": "INFO", "logger": "app.services.prediction_service", "message": "Starting prediction. Request ID: 52a7307f-0983-4617-969e-506408d1040d | Model ID: model_a", "request_id": null}
+{"timestamp": "2025-02-19T19:26:15", "level": "INFO", "logger": "app.main", "message": "Request ID: 1803f1fa-30b9-40d6-b487-ca3febf540fb | Path: /async/async-predict/model_a | Time Taken: 0.0035 sec", "request_id": "1803f1fa-30b9-40d6-b487-ca3febf540fb"}
+{"timestamp": "2025-02-19T19:26:16", "level": "INFO", "logger": "app.models.model_registry", "message": "Model 'model_a' successfully loaded from app/models/model_a.pkl.", "request_id": null}
+{"timestamp": "2025-02-19T19:26:16", "level": "INFO", "logger": "app.services.prediction_service", "message": "Model 'model_a' loaded with type 'sklearn'.", "request_id": null}
+{"timestamp": "2025-02-19T19:26:16", "level": "INFO", "logger": "app.config.registry", "message": "Preprocessor found for model type: sklearn", "request_id": null}
+{"timestamp": "2025-02-19T19:26:16", "level": "INFO", "logger": "app.services.prediction_service", "message": "Input data preprocessed successfully: {'features': ['i love this product']}", "request_id": null}
+{"timestamp": "2025-02-19T19:26:16", "level": "INFO", "logger": "app.services.prediction_service", "message": "Model inference completed. Raw prediction: ['positive']", "request_id": null}
+{"timestamp": "2025-02-19T19:26:16", "level": "INFO", "logger": "app.config.registry", "message": "Postprocessor found for model type: sklearn", "request_id": null}
+{"timestamp": "2025-02-19T19:26:16", "level": "INFO", "logger": "app.services.prediction_service", "message": "Prediction postprocessed successfully: Processed: positive", "request_id": null}
+{"timestamp": "2025-02-19T19:26:29", "level": "INFO", "logger": "app.routes.prediction", "message": "Prediction request received. Request ID: 4b98d479-1078-4d2c-bc36-9e58f7cf421d | Model ID: model_a", "request_id": null}
+{"timestamp": "2025-02-19T19:26:29", "level": "INFO", "logger": "app.services.prediction_service", "message": "Starting prediction. Request ID: 4b98d479-1078-4d2c-bc36-9e58f7cf421d | Model ID: model_a", "request_id": null}
+{"timestamp": "2025-02-19T19:26:29", "level": "INFO", "logger": "app.models.model_registry", "message": "Model 'model_a' loaded from cache.", "request_id": null}
+{"timestamp": "2025-02-19T19:26:29", "level": "INFO", "logger": "app.services.prediction_service", "message": "Model 'model_a' loaded with type 'sklearn'.", "request_id": null}
+{"timestamp": "2025-02-19T19:26:29", "level": "INFO", "logger": "app.config.registry", "message": "Preprocessor found for model type: sklearn", "request_id": null}
+{"timestamp": "2025-02-19T19:26:29", "level": "INFO", "logger": "app.services.prediction_service", "message": "Input data preprocessed successfully: {'features': ['i love this product']}", "request_id": null}
+{"timestamp": "2025-02-19T19:26:29", "level": "INFO", "logger": "app.services.prediction_service", "message": "Model inference completed. Raw prediction: ['positive']", "request_id": null}
+{"timestamp": "2025-02-19T19:26:29", "level": "INFO", "logger": "app.config.registry", "message": "Postprocessor found for model type: sklearn", "request_id": null}
+{"timestamp": "2025-02-19T19:26:29", "level": "INFO", "logger": "app.services.prediction_service", "message": "Prediction postprocessed successfully: Processed: positive", "request_id": null}
+{"timestamp": "2025-02-19T19:26:29", "level": "INFO", "logger": "app.routes.prediction", "message": "Prediction successful. Request ID: 4b98d479-1078-4d2c-bc36-9e58f7cf421d", "request_id": null}
+{"timestamp": "2025-02-19T19:26:29", "level": "INFO", "logger": "app.main", "message": "Request ID: 4b98d479-1078-4d2c-bc36-9e58f7cf421d | Path: /predict/model_a | Time Taken: 0.0046 sec", "request_id": "4b98d479-1078-4d2c-bc36-9e58f7cf421d"}
+{"timestamp": "2025-02-19T19:26:41", "level": "INFO", "logger": "app.main", "message": "Request ID: e472ad87-cedd-4773-90b0-6522cbfa9b44 | Path: /metrics | Time Taken: 0.0041 sec", "request_id": "e472ad87-cedd-4773-90b0-6522cbfa9b44"}
+{"timestamp": "2025-02-19T19:27:44", "level": "INFO", "logger": "app.routes.async_prediction", "message": "Received async request 1ff031bd-8ac1-4a08-9141-90abd3fdef68 for model model_a", "request_id": null}
+{"timestamp": "2025-02-19T19:27:44", "level": "INFO", "logger": "app.routes.async_prediction", "message": "Processing async request 1ff031bd-8ac1-4a08-9141-90abd3fdef68 for model model_a", "request_id": null}
+{"timestamp": "2025-02-19T19:27:44", "level": "INFO", "logger": "app.main", "message": "Request ID: d306dd24-d1f7-4cca-9c61-f468374a3116 | Path: /async/async-predict/model_a | Time Taken: 0.0089 sec", "request_id": "d306dd24-d1f7-4cca-9c61-f468374a3116"}
+{"timestamp": "2025-02-19T19:27:44", "level": "INFO", "logger": "app.services.prediction_service", "message": "Starting prediction. Request ID: 1ff031bd-8ac1-4a08-9141-90abd3fdef68 | Model ID: model_a", "request_id": null}
+{"timestamp": "2025-02-19T19:27:44", "level": "INFO", "logger": "app.models.model_registry", "message": "Model 'model_a' loaded from cache.", "request_id": null}
+{"timestamp": "2025-02-19T19:27:44", "level": "INFO", "logger": "app.services.prediction_service", "message": "Model 'model_a' loaded with type 'sklearn'.", "request_id": null}
+{"timestamp": "2025-02-19T19:27:44", "level": "INFO", "logger": "app.config.registry", "message": "Preprocessor found for model type: sklearn", "request_id": null}
+{"timestamp": "2025-02-19T19:27:44", "level": "INFO", "logger": "app.services.prediction_service", "message": "Input data preprocessed successfully: {'features': ['i love this product']}", "request_id": null}
+{"timestamp": "2025-02-19T19:27:44", "level": "INFO", "logger": "app.services.prediction_service", "message": "Model inference completed. Raw prediction: ['positive']", "request_id": null}
+{"timestamp": "2025-02-19T19:27:44", "level": "INFO", "logger": "app.config.registry", "message": "Postprocessor found for model type: sklearn", "request_id": null}
+{"timestamp": "2025-02-19T19:27:44", "level": "INFO", "logger": "app.services.prediction_service", "message": "Prediction postprocessed successfully: Processed: positive", "request_id": null}
+{"timestamp": "2025-02-19T19:27:49", "level": "INFO", "logger": "app.main", "message": "Request ID: 9f984017-3052-44c7-b9ae-3c6c15dda1f2 | Path: /metrics | Time Taken: 0.0034 sec", "request_id": "9f984017-3052-44c7-b9ae-3c6c15dda1f2"}

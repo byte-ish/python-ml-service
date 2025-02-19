@@ -1,15 +1,12 @@
-"""
-Routes for prediction requests.
-"""
 from fastapi import APIRouter, HTTPException, Request
 from app.schemas import PredictionInput, PredictionResponse
 from app.services.prediction_service import predict
 from app.models.model_registry import ModelRegistry
 from app.logger import get_logger
+from app.utils.metrics import PREDICTION_HIT_COUNTER, PREDICTION_RESPONSE_TIME
 
 router = APIRouter()
 logger = get_logger(__name__)
-
 
 @router.post(
     "/predict/{model_id}",
@@ -38,9 +35,14 @@ async def get_prediction(model_id: str, data: PredictionInput, request: Request)
         raise HTTPException(status_code=400, detail=f"Model '{model_id}' is not registered.")
 
     try:
-        result = predict(input_data=data.dict(), model_id=model_id, request_id=request_id)
+        PREDICTION_HIT_COUNTER.inc()  # Increment request counter
+
+        with PREDICTION_RESPONSE_TIME.time():  # Track response time
+            result = predict(input_data=data.dict(), model_id=model_id, request_id=request_id)
+
         logger.info(f"Prediction successful. Request ID: {request_id}")
         return {"prediction": result}
+
     except Exception as e:
         logger.error(f"Prediction failed. Request ID: {request_id} | Error: {e}")
         raise HTTPException(status_code=500, detail=f"Prediction failed: {e}")

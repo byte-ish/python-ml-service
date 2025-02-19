@@ -1,16 +1,11 @@
-"""
-Main module for the ML Microservice application.
-Initializes the FastAPI application, includes routes, and sets up middleware.
-"""
-
-from fastapi import FastAPI, Request, HTTPException
-from fastapi.responses import JSONResponse
-import traceback
+from fastapi import FastAPI, Request
+import time
 import uuid
 from prometheus_fastapi_instrumentator import Instrumentator
 from app.logger import get_logger
 from app.routes.healthcheck import router as health_router
 from app.routes.prediction import router as prediction_router
+from app.routes.async_prediction import router as async_router
 from app.routes.auth import router as auth_router
 from app.models.model_registry import ModelRegistry
 from app.config.config import Config
@@ -29,34 +24,30 @@ logger = get_logger(__name__)
 instrumentator = Instrumentator()
 instrumentator.instrument(app).expose(app)
 
+
 @app.middleware("http")
-async def add_request_id_middleware(request: Request, call_next):
+async def log_request_time_middleware(request: Request, call_next):
     """
-    Middleware to add a unique request ID to each incoming request.
+    Middleware to log execution time for all requests.
     """
     request_id = str(uuid.uuid4())
     request.state.request_id = request_id
-    logger.info(f"Request ID {request_id} assigned to incoming request.", extra={"request_id": request_id})
+
+    start_time = time.perf_counter()
     response = await call_next(request)
+    end_time = time.perf_counter()
+
+    process_time = end_time - start_time
+    logger.info(
+        f"Request ID: {request_id} | Path: {request.url.path} | Time Taken: {process_time:.4f} sec",
+        extra={"request_id": request_id},
+    )
+
     response.headers["X-Request-ID"] = request_id
+    response.headers["X-Response-Time"] = str(process_time)
+
     return response
 
-@app.exception_handler(Exception)
-async def general_exception_handler(request: Request, exc: Exception):
-    """
-    Handles all unexpected exceptions and logs the stack trace.
-    """
-    logger.error(
-        f"Unexpected error: {str(exc)} | Request ID: {request.state.request_id}\n"
-        f"Traceback: {traceback.format_exc()}"
-    )
-    return JSONResponse(
-        status_code=500,
-        content={
-            "error": "An unexpected error occurred. Please try again later.",
-            "request_id": request.state.request_id,
-        },
-    )
 
 @app.on_event("startup")
 async def startup_event():
@@ -71,10 +62,11 @@ async def startup_event():
     except Exception as e:
         logger.error(f"Error during model registration: {e}")
 
-# Include routers for various functionalities
+# Include routers
 app.include_router(health_router)
 app.include_router(prediction_router)
 app.include_router(auth_router, prefix="/auth")
+app.include_router(async_router, prefix="/async")
 
 if __name__ == "__main__":
     import uvicorn
